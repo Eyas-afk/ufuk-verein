@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
 
 const initialState = {
@@ -29,7 +30,7 @@ function Field({ label, children }) {
   );
 }
 
-export default function RegisterForm({ dict }) {
+export default function RegisterForm({ dict, lang }) {
   const [form, setForm] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -194,7 +195,17 @@ export default function RegisterForm({ dict }) {
           onChange={(e) => update("consent", e.target.checked)}
           className="mt-1"
         />
-        <span className="text-sm">{dict.consent}</span>
+        <span className="text-sm">
+          {dict.consentPre}{" "}
+          <Link
+            href={`/${lang}/datenschutz`}
+            target="_blank"
+            className="underline hover:no-underline"
+          >
+            {dict.consentLinkText}
+          </Link>{" "}
+          {dict.consentPost}
+        </span>
       </label>
 
       {error && (
