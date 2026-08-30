@@ -6,7 +6,8 @@
   "nav": {
     "brand": "Ufuk",
     "home": "Startseite",
-    "register": "Registrierung"
+    "register": "Registrierung",
+    "teacherApplication": "Als Lehrer bewerben"
   },
   "home": {
     "title": "Ufuk e.V.",
@@ -40,6 +41,28 @@
     "submit": "Registrierung absenden",
     "submitting": "Wird gesendet …",
     "successPlaceholder": "Vielen Dank! Die Registrierung wurde erfolgreich gespeichert.",
+    "errorPlaceholder": "Beim Speichern ist ein Fehler aufgetreten. Bitte versuche es später erneut."
+  },
+  "teacherApplication": {
+    "title": "Als Lehrer bewerben",
+    "fullName": "Vollständiger Name",
+    "phone": "Telefonnummer",
+    "email": "E-Mail-Adresse",
+    "location": "Bevorzugter Unterrichtsort",
+    "locationPlaceholder": "Bitte auswählen",
+    "locationOptions": {
+      "moelln": "Mölln",
+      "ratzeburg": "Ratzeburg",
+      "schwarzenbeck": "Schwarzenbeck"
+    },
+    "qualification": "Qualifikation / Erfahrung",
+    "message": "Nachricht (optional)",
+    "consentPre": "Ich habe die",
+    "consentLinkText": "Datenschutzerklärung",
+    "consentPost": "gelesen und stimme zu, dass diese Daten zur Bearbeitung meiner Bewerbung bei Ufuk e.V. gespeichert werden.",
+    "submit": "Bewerbung absenden",
+    "submitting": "Wird gesendet …",
+    "successPlaceholder": "Vielen Dank! Deine Bewerbung wurde erfolgreich übermittelt.",
     "errorPlaceholder": "Beim Speichern ist ein Fehler aufgetreten. Bitte versuche es später erneut."
   },
   "footer": {

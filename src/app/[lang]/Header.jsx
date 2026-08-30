@@ -23,6 +23,9 @@ export default function Header({ dict, lang }) {
           <Link href={`/${lang}/registrierung`} className="hover:underline">
             {dict.nav.register}
           </Link>
+          <Link href={`/${lang}/lehrer-werden`} className="hover:underline">
+            {dict.nav.teacherApplication}
+          </Link>
           <LanguageSwitcher lang={lang} />
         </nav>
       </div>

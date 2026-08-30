@@ -6,7 +6,8 @@
   "nav": {
     "brand": "أفق",
     "home": "الرئيسية",
-    "register": "التسجيل"
+    "register": "التسجيل",
+    "teacherApplication": "التقديم كمعلم"
   },
   "home": {
     "title": "نادي أفق",
@@ -40,6 +41,28 @@
     "submit": "إرسال التسجيل",
     "submitting": "جارٍ الإرسال …",
     "successPlaceholder": "شكرًا لك! تم حفظ التسجيل بنجاح.",
+    "errorPlaceholder": "حدث خطأ أثناء الحفظ. الرجاء المحاولة مرة أخرى لاحقًا."
+  },
+  "teacherApplication": {
+    "title": "التقديم كمعلم",
+    "fullName": "الاسم الكامل",
+    "phone": "رقم الهاتف",
+    "email": "البريد الإلكتروني",
+    "location": "مكان التدريس المفضل",
+    "locationPlaceholder": "الرجاء الاختيار",
+    "locationOptions": {
+      "moelln": "مولن (Mölln)",
+      "ratzeburg": "راتسبورغ (Ratzeburg)",
+      "schwarzenbeck": "شفارتسنبيك (Schwarzenbeck)"
+    },
+    "qualification": "المؤهلات / الخبرة",
+    "message": "رسالة (اختياري)",
+    "consentPre": "لقد قرأت",
+    "consentLinkText": "سياسة الخصوصية",
+    "consentPost": "وأوافق على تخزين هذه البيانات لغرض معالجة طلبي لدى نادي أفق.",
+    "submit": "إرسال الطلب",
+    "submitting": "جارٍ الإرسال …",
+    "successPlaceholder": "شكرًا لك! تم إرسال طلبك بنجاح.",
     "errorPlaceholder": "حدث خطأ أثناء الحفظ. الرجاء المحاولة مرة أخرى لاحقًا."
   },
   "footer": {
