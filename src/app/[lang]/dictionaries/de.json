@@ -36,7 +36,9 @@
     "speaksArabic": "Das Kind spricht Arabisch",
     "consent": "Ich bin damit einverstanden, dass diese Daten zur Anmeldung meines Kindes für den Arabischkurs bei Ufuk e.V. gespeichert werden.",
     "submit": "Registrierung absenden",
-    "successPlaceholder": "Die Daten wurden entgegengenommen. (Hinweis: Das tatsächliche Speichern in der Datenbank folgt im nächsten Projektschritt.)"
+    "submitting": "Wird gesendet …",
+    "successPlaceholder": "Vielen Dank! Die Registrierung wurde erfolgreich gespeichert.",
+    "errorPlaceholder": "Beim Speichern ist ein Fehler aufgetreten. Bitte versuche es später erneut."
   },
   "footer": {
     "text": "© Ufuk e.V. – Mölln, Ratzeburg, Schwarzenbeck"

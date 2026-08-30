@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
 const initialState = {
   childName: "",
@@ -31,15 +32,40 @@ function Field({ label, children }) {
 export default function RegisterForm({ dict }) {
   const [form, setForm] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
 
   function update(field, value) {
     setForm((prev) => ({ ...prev, [field]: value }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    // TODO: Anbindung an die Datenbank folgt im nächsten Projektschritt (Supabase)
-    console.log("Registrierung (noch nicht gespeichert):", form);
+    setSubmitting(true);
+    setError(false);
+
+    const { error: dbError } = await supabase.from("registrations").insert({
+      child_name: form.childName,
+      birth_date: form.birthDate,
+      father_name: form.fatherName,
+      mother_name: form.motherName,
+      phone: form.phone,
+      email: form.email,
+      address: form.address,
+      location: form.location,
+      school: form.school,
+      speaks_arabic: form.speaksArabic,
+      consent: form.consent,
+    });
+
+    setSubmitting(false);
+
+    if (dbError) {
+      console.error("Supabase insert error:", dbError);
+      setError(true);
+      return;
+    }
+
     setSubmitted(true);
   }
 
@@ -171,11 +197,18 @@ export default function RegisterForm({ dict }) {
         <span className="text-sm">{dict.consent}</span>
       </label>
 
+      {error && (
+        <p className="rounded-lg bg-red-50 p-4 text-red-800">
+          {dict.errorPlaceholder}
+        </p>
+      )}
+
       <button
         type="submit"
-        className="rounded-lg bg-orange-600 px-6 py-3 font-semibold text-white hover:bg-orange-700"
+        disabled={submitting}
+        className="rounded-lg bg-orange-600 px-6 py-3 font-semibold text-white hover:bg-orange-700 disabled:opacity-50"
       >
-        {dict.submit}
+        {submitting ? dict.submitting : dict.submit}
       </button>
     </form>
   );
