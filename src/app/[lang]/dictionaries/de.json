@@ -41,6 +41,43 @@
     "errorPlaceholder": "Beim Speichern ist ein Fehler aufgetreten. Bitte versuche es später erneut."
   },
   "footer": {
-    "text": "© Ufuk e.V. – Mölln, Ratzeburg, Schwarzenbeck"
+    "text": "© Ufuk e.V. – Mölln, Ratzeburg, Schwarzenbeck",
+    "linkImpressum": "Impressum",
+    "linkDatenschutz": "Datenschutz"
+  },
+  "legal": {
+    "impressum": {
+      "title": "Impressum",
+      "draftNotice": "ENTWURF – Diese Seite muss vom Vereinsvorstand geprüft und mit den echten Angaben vervollständigt werden, bevor die Webseite veröffentlicht wird.",
+      "sectionAngaben": "Angaben gemäß § 5 TMG",
+      "vereinName": "[Vollständiger Vereinsname, z. B. Ufuk e.V.]",
+      "address": "[Straße Hausnummer]\n[PLZ Ort]",
+      "represented": "Vertreten durch den Vorstand: [Name des/der Vorstandsvorsitzenden]",
+      "register": "Vereinsregister: [Registergericht]\nRegisternummer: [VR-Nummer]",
+      "contactTitle": "Kontakt",
+      "phone": "Telefon: [Telefonnummer]",
+      "email": "E-Mail: [E-Mail-Adresse]",
+      "responsibleTitle": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV",
+      "responsible": "[Name der verantwortlichen Person]\n[Adresse]"
+    },
+    "datenschutz": {
+      "title": "Datenschutzerklärung",
+      "draftNotice": "ENTWURF – Diese Seite muss vom Vereinsvorstand geprüft und mit den echten Angaben vervollständigt werden, bevor die Webseite veröffentlicht wird.",
+      "intro": "Der Schutz Ihrer persönlichen Daten ist uns wichtig. Diese Datenschutzerklärung informiert Sie darüber, welche Daten wir bei der Nutzung dieser Webseite, insbesondere bei der Registrierung Ihres Kindes, erheben und wie wir damit umgehen.",
+      "controllerTitle": "1. Verantwortlicher",
+      "controller": "[Vereinsname]\n[Adresse]\nE-Mail: [E-Mail-Adresse]",
+      "dataTitle": "2. Welche Daten wir erheben",
+      "dataText": "Bei der Registrierung Ihres Kindes erheben wir folgende Daten: Name des Kindes, Geburtsdatum, Name der Eltern, Telefonnummer, E-Mail-Adresse, vollständige Adresse, gewünschter Unterrichtsort, Name der Schule sowie die Angabe, ob das Kind bereits Arabisch spricht.",
+      "purposeTitle": "3. Zweck der Verarbeitung",
+      "purposeText": "Die Daten werden ausschließlich zur Organisation und Durchführung der Arabischkurse verwendet, z. B. zur Einteilung in passende Gruppen und zur Kontaktaufnahme mit den Eltern.",
+      "legalBasisTitle": "4. Rechtsgrundlage",
+      "legalBasisText": "Die Verarbeitung erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Sie durch das Ankreuzen der Einverständnis-Checkbox im Registrierungsformular erteilen.",
+      "storageTitle": "5. Speicherort und Speicherdauer",
+      "storageText": "Die Daten werden bei unserem Dienstleister Supabase auf Servern innerhalb der EU (Frankfurt) gespeichert. Wir speichern die Daten so lange, wie es für die Durchführung der Kurse erforderlich ist, mindestens jedoch bis zum Widerruf Ihrer Einwilligung.",
+      "rightsTitle": "6. Ihre Rechte",
+      "rightsText": "Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie das Recht, Ihre Einwilligung mit Wirkung für die Zukunft zu widerrufen. Wenden Sie sich dazu an: [E-Mail-Adresse].",
+      "contactTitle": "7. Kontakt",
+      "contactText": "Bei Fragen zum Datenschutz wenden Sie sich bitte an [Name der verantwortlichen Person], [E-Mail-Adresse]."
+    }
   }
 }
