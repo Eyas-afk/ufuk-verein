@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "title": "Verein Ufuk – Arabischkurse für Kinder",
+    "description": "Der Verein Ufuk bietet Arabischkurse für Kinder arabischer Herkunft in Mölln, Ratzeburg, Schwarzenbeck und Umgebung."
+  },
+  "nav": {
+    "brand": "Ufuk",
+    "home": "Startseite",
+    "register": "Registrierung"
+  },
+  "home": {
+    "title": "Verein Ufuk",
+    "subtitle": "Arabischkurse für Kinder arabischer Herkunft",
+    "about": "Der Verein Ufuk bietet Kindern arabischer Herkunft Arabischunterricht in Wort und Schrift – sowohl für Kinder, die Arabisch bereits sprechen, aber nicht schreiben können, als auch für Kinder, die die Sprache noch gar nicht beherrschen. Die Kinder werden nach Alter und Vorwissen in Gruppen eingeteilt.",
+    "coursesTitle": "Aktuell verfügbare Unterrichtsorte",
+    "locations": ["Mölln", "Ratzeburg", "Schwarzenbeck"],
+    "cta": "Jetzt Kind registrieren"
+  },
+  "register": {
+    "title": "Kind registrieren",
+    "childName": "Name des Kindes",
+    "birthDate": "Geburtsdatum des Kindes",
+    "fatherName": "Name des Vaters",
+    "motherName": "Name der Mutter",
+    "phone": "Telefonnummer",
+    "email": "E-Mail-Adresse",
+    "address": "Vollständige Adresse",
+    "location": "Gewünschter Unterrichtsort",
+    "locationPlaceholder": "Bitte auswählen",
+    "locationOptions": {
+      "moelln": "Mölln",
+      "ratzeburg": "Ratzeburg",
+      "schwarzenbeck": "Schwarzenbeck"
+    },
+    "school": "Name der deutschen Schule des Kindes",
+    "speaksArabic": "Das Kind spricht Arabisch",
+    "consent": "Ich bin damit einverstanden, dass diese Daten zur Anmeldung meines Kindes für den Arabischkurs beim Verein Ufuk gespeichert werden.",
+    "submit": "Registrierung absenden",
+    "successPlaceholder": "Die Daten wurden entgegengenommen. (Hinweis: Das tatsächliche Speichern in der Datenbank folgt im nächsten Projektschritt.)"
+  },
+  "footer": {
+    "text": "© Verein Ufuk – Mölln, Ratzeburg, Schwarzenbeck"
+  }
+}
