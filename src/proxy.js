@@ -7,9 +7,9 @@ const defaultLocale = "ar";
 export async function proxy(request) {
   const { pathname } = request.nextUrl;
 
-  // Verwaltungsbereich: keine Sprachumleitung, aber Login-Session auf jeder
-  // Anfrage auffrischen, damit abgelaufene Sitzungen zuverlässig erkannt werden.
-  if (pathname.startsWith("/verwaltung")) {
+  // Verwaltung & Einladungs-Link: keine Sprachumleitung, aber Login-Session auf
+  // jeder Anfrage auffrischen, damit abgelaufene Sitzungen zuverlässig erkannt werden.
+  if (pathname.startsWith("/verwaltung") || pathname.startsWith("/einladung")) {
     return updateSupabaseSession(request);
   }
 

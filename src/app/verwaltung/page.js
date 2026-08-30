@@ -23,6 +23,22 @@ export default async function VerwaltungPage() {
     .eq("id", user.id)
     .single();
 
+  if (profile?.role === "lehrer") {
+    return (
+      <div className="mx-auto max-w-lg px-4 py-24 text-center">
+        <p>Willkommen, {profile.full_name || user.email}! Dein Zugang ist freigeschaltet.</p>
+        <p className="mt-2 text-sm text-neutral-500">
+          Der eigene Lehrer-Bereich mit weiteren Funktionen folgt in einem späteren Schritt.
+        </p>
+        <form action={logout}>
+          <button type="submit" className="mt-4 underline">
+            Abmelden
+          </button>
+        </form>
+      </div>
+    );
+  }
+
   if (profile?.role !== "verwaltung") {
     return (
       <div className="mx-auto max-w-lg px-4 py-24 text-center">

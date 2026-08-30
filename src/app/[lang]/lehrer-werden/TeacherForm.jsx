@@ -48,6 +48,7 @@ export default function TeacherForm({ dict, lang }) {
       location: form.location,
       qualification: form.qualification,
       message: form.message || null,
+      locale: lang,
     });
 
     setSubmitting(false);

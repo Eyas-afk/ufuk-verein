@@ -57,6 +57,7 @@ export default function RegisterForm({ dict, lang }) {
       school: form.school,
       speaks_arabic: form.speaksArabic,
       consent: form.consent,
+      locale: lang,
     });
 
     setSubmitting(false);

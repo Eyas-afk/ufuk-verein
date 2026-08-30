@@ -1,4 +1,4 @@
-import "./verwaltung.css";
+import "../plain.css";
 
 export const metadata = {
   title: "Verwaltung – Ufuk e.V.",
