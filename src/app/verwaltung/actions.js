@@ -1,9 +1,15 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { sendTeacherInviteEmail, sendRegistrationApprovedEmail } from "@/lib/email";
+import {
+  sendTeacherInviteEmail,
+  sendRegistrationApprovedEmail,
+  sendGroupAssignedParentEmail,
+  sendGroupAssignedTeacherEmail,
+} from "@/lib/email";
 
 export async function login(formData) {
   const supabase = await createClient();
@@ -80,6 +86,7 @@ export async function setTeacherApplicationStatus(id, status) {
         id: linkData.user.id,
         full_name: application.full_name,
         role: "lehrer",
+        locale: application.locale,
       });
 
       await sendTeacherInviteEmail({
@@ -92,5 +99,113 @@ export async function setTeacherApplicationStatus(id, status) {
     }
   }
 
+  revalidatePath("/verwaltung");
+}
+
+export async function createGroup(formData) {
+  const supabase = await createClient();
+  const name = formData.get("name");
+
+  const { data: group, error } = await supabase
+    .from("groups")
+    .insert({ name })
+    .select("id")
+    .single();
+
+  if (error) {
+    console.error("Gruppe konnte nicht erstellt werden:", error);
+    return;
+  }
+
+  revalidatePath("/verwaltung/gruppen");
+  redirect(`/verwaltung/gruppen/${group.id}`);
+}
+
+export async function saveGroup(id, notify, formData) {
+  const supabase = await createClient();
+
+  const name = formData.get("name");
+  const teacherId = formData.get("teacherId") || null;
+  const weekday = formData.get("weekday") || null;
+  const startTime = formData.get("startTime") || null;
+  const endTime = formData.get("endTime") || null;
+  const studentIds = formData.getAll("studentIds");
+
+  await supabase
+    .from("groups")
+    .update({ name, teacher_id: teacherId, weekday, start_time: startTime, end_time: endTime })
+    .eq("id", id);
+
+  // Erst alle bisherigen Zuordnungen zu dieser Gruppe lösen, dann die aktuell
+  // ausgewählten Kinder neu zuweisen – vermeidet komplexe "nicht mehr angehakt"-Logik.
+  await supabase.from("registrations").update({ group_id: null }).eq("group_id", id);
+  if (studentIds.length > 0) {
+    await supabase.from("registrations").update({ group_id: id }).in("id", studentIds);
+  }
+
+  if (notify) {
+    const { data: group } = await supabase
+      .from("groups")
+      .select("name, weekday, start_time, end_time, teacher_id")
+      .eq("id", id)
+      .single();
+
+    const { data: students } = await supabase
+      .from("registrations")
+      .select("child_name, email, locale")
+      .eq("group_id", id);
+
+    for (const student of students ?? []) {
+      try {
+        await sendGroupAssignedParentEmail({
+          to: student.email,
+          locale: student.locale,
+          childName: student.child_name,
+          groupName: group.name,
+          weekday: group.weekday,
+          startTime: group.start_time,
+          endTime: group.end_time,
+        });
+      } catch (err) {
+        console.error("Gruppen-Benachrichtigung (Eltern) fehlgeschlagen:", err);
+      }
+    }
+
+    if (group.teacher_id) {
+      const { data: teacherProfile } = await supabase
+        .from("profiles")
+        .select("locale")
+        .eq("id", group.teacher_id)
+        .single();
+
+      const { data: adminAuth } = await createAdminClient().auth.admin.getUserById(
+        group.teacher_id
+      );
+
+      if (adminAuth?.user?.email) {
+        try {
+          await sendGroupAssignedTeacherEmail({
+            to: adminAuth.user.email,
+            locale: teacherProfile?.locale,
+            groupName: group.name,
+            weekday: group.weekday,
+            startTime: group.start_time,
+            endTime: group.end_time,
+            studentNames: (students ?? []).map((s) => s.child_name),
+          });
+        } catch (err) {
+          console.error("Gruppen-Benachrichtigung (Lehrer) fehlgeschlagen:", err);
+        }
+      }
+    }
+
+    await supabase
+      .from("groups")
+      .update({ last_notified_at: new Date().toISOString() })
+      .eq("id", id);
+  }
+
+  revalidatePath(`/verwaltung/gruppen/${id}`);
+  revalidatePath("/verwaltung/gruppen");
   revalidatePath("/verwaltung");
 }

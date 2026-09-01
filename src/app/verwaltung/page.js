@@ -1,5 +1,8 @@
-import { createClient } from "@/lib/supabase/server";
+import { getSessionAndProfile } from "./auth";
 import LoginForm from "./LoginForm";
+import AccessDenied from "./AccessDenied";
+import VerwaltungNav from "./VerwaltungNav";
+import { weekdayLabels } from "@/lib/weekdays";
 import {
   logout,
   setRegistrationStatus,
@@ -7,49 +10,68 @@ import {
 } from "./actions";
 
 export default async function VerwaltungPage() {
-  const supabase = await createClient();
+  const { supabase, user, profile } = await getSessionAndProfile();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return <LoginForm />;
-  }
-
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("role, full_name")
-    .eq("id", user.id)
-    .single();
+  if (!user) return <LoginForm />;
 
   if (profile?.role === "lehrer") {
+    const { data: groups } = await supabase
+      .from("groups")
+      .select("id, name, weekday, start_time, end_time")
+      .eq("teacher_id", user.id)
+      .order("created_at", { ascending: true });
+
+    const groupIds = groups?.map((g) => g.id) ?? [];
+    const { data: students } = groupIds.length
+      ? await supabase
+          .from("registrations")
+          .select("child_name, group_id")
+          .in("group_id", groupIds)
+      : { data: [] };
+
     return (
-      <div className="mx-auto max-w-lg px-4 py-24 text-center">
-        <p>Willkommen, {profile.full_name || user.email}! Dein Zugang ist freigeschaltet.</p>
-        <p className="mt-2 text-sm text-neutral-500">
-          Der eigene Lehrer-Bereich mit weiteren Funktionen folgt in einem späteren Schritt.
-        </p>
-        <form action={logout}>
-          <button type="submit" className="mt-4 underline">
-            Abmelden
-          </button>
-        </form>
+      <div className="mx-auto max-w-2xl px-4 py-10">
+        <div className="mb-6 flex items-center justify-between">
+          <h1 className="text-2xl font-bold">
+            Willkommen, {profile.full_name || user.email}
+          </h1>
+          <form action={logout}>
+            <button type="submit" className="text-sm underline">
+              Abmelden
+            </button>
+          </form>
+        </div>
+
+        <h2 className="mb-4 text-xl font-semibold">Meine Gruppen</h2>
+        {(!groups || groups.length === 0) && (
+          <p className="text-neutral-500">Dir wurde noch keine Gruppe zugewiesen.</p>
+        )}
+        <div className="space-y-4">
+          {groups?.map((g) => (
+            <div key={g.id} className="rounded-lg border border-neutral-200 bg-white p-4">
+              <p className="font-semibold">{g.name}</p>
+              <p className="text-sm text-neutral-600">
+                {g.weekday ? weekdayLabels[g.weekday]?.de : "Kein Tag festgelegt"}
+                {g.start_time && g.end_time
+                  ? `, ${g.start_time.slice(0, 5)}–${g.end_time.slice(0, 5)} Uhr`
+                  : ""}
+              </p>
+              <p className="mt-2 text-sm">
+                Schüler:{" "}
+                {students
+                  ?.filter((s) => s.group_id === g.id)
+                  .map((s) => s.child_name)
+                  .join(", ") || "noch keine zugewiesen"}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
 
   if (profile?.role !== "verwaltung") {
-    return (
-      <div className="mx-auto max-w-lg px-4 py-24 text-center">
-        <p>Kein Zugriff für dieses Konto.</p>
-        <form action={logout}>
-          <button type="submit" className="mt-4 underline">
-            Abmelden
-          </button>
-        </form>
-      </div>
-    );
+    return <AccessDenied />;
   }
 
   const { data: registrations } = await supabase
@@ -66,6 +88,8 @@ export default async function VerwaltungPage() {
 
   return (
     <div className="mx-auto max-w-4xl space-y-10 px-4 py-10">
+      <VerwaltungNav />
+
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Verwaltung</h1>
         <form action={logout}>
