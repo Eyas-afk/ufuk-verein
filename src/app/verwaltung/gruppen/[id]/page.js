@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getSessionAndProfile } from "../../auth";
 import LoginForm from "../../LoginForm";
@@ -42,7 +43,15 @@ export default async function GruppeBearbeitenPage({ params }) {
     <div className="mx-auto max-w-2xl px-4 py-10">
       <VerwaltungNav />
 
-      <h1 className="mb-2 text-2xl font-bold">Gruppe bearbeiten</h1>
+      <div className="mb-2 flex items-center justify-between">
+        <h1 className="text-2xl font-bold">Gruppe bearbeiten</h1>
+        <Link
+          href={`/verwaltung/unterricht/${group.id}`}
+          className="text-sm text-orange-600 underline"
+        >
+          Unterrichtsstunden ansehen/bearbeiten →
+        </Link>
+      </div>
       {group.last_notified_at && (
         <p className="mb-6 text-sm text-neutral-500">
           Zuletzt benachrichtigt: {new Date(group.last_notified_at).toLocaleString("de-DE")}

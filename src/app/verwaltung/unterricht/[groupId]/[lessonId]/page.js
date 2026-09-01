@@ -19,7 +19,10 @@ export default async function UnterrichtsstundePage({ params }) {
 
   if (!group) notFound();
 
-  if (profile?.role !== "lehrer" || group.teacher_id !== user.id) {
+  const isOwnGroup = profile?.role === "lehrer" && group.teacher_id === user.id;
+  const isVerwaltung = profile?.role === "verwaltung";
+
+  if (!isOwnGroup && !isVerwaltung) {
     return <AccessDenied message="Diese Gruppe ist nicht dir zugewiesen." />;
   }
 

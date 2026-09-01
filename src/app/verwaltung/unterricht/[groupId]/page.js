@@ -19,7 +19,10 @@ export default async function UnterrichtGruppePage({ params }) {
 
   if (!group) notFound();
 
-  if (profile?.role !== "lehrer" || group.teacher_id !== user.id) {
+  const isOwnGroup = profile?.role === "lehrer" && group.teacher_id === user.id;
+  const isVerwaltung = profile?.role === "verwaltung";
+
+  if (!isOwnGroup && !isVerwaltung) {
     return <AccessDenied message="Diese Gruppe ist nicht dir zugewiesen." />;
   }
 
@@ -66,8 +69,11 @@ export default async function UnterrichtGruppePage({ params }) {
         ))}
       </div>
 
-      <Link href="/verwaltung" className="mt-6 inline-block text-sm text-neutral-500 underline">
-        ← Zurück zu meinen Gruppen
+      <Link
+        href={isVerwaltung ? `/verwaltung/gruppen/${groupId}` : "/verwaltung"}
+        className="mt-6 inline-block text-sm text-neutral-500 underline"
+      >
+        ← Zurück zur Gruppe
       </Link>
     </div>
   );
