@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getSessionAndProfile } from "./auth";
 import LoginForm from "./LoginForm";
 import AccessDenied from "./AccessDenied";
@@ -63,6 +64,12 @@ export default async function VerwaltungPage() {
                   .map((s) => s.child_name)
                   .join(", ") || "noch keine zugewiesen"}
               </p>
+              <Link
+                href={`/verwaltung/unterricht/${g.id}`}
+                className="mt-3 inline-block text-sm text-orange-600 underline"
+              >
+                Anwesenheit erfassen
+              </Link>
             </div>
           ))}
         </div>

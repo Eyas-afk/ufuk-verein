@@ -209,3 +209,50 @@ export async function saveGroup(id, notify, formData) {
   revalidatePath("/verwaltung/gruppen");
   revalidatePath("/verwaltung");
 }
+
+export async function createLesson(groupId) {
+  const supabase = await createClient();
+  const today = new Date().toISOString().slice(0, 10);
+
+  const { data: existing } = await supabase
+    .from("lessons")
+    .select("id")
+    .eq("group_id", groupId)
+    .eq("date", today)
+    .maybeSingle();
+
+  if (existing) {
+    redirect(`/verwaltung/unterricht/${groupId}/${existing.id}`);
+  }
+
+  const { data, error } = await supabase
+    .from("lessons")
+    .insert({ group_id: groupId, date: today })
+    .select("id")
+    .single();
+
+  if (error) {
+    console.error("Unterrichtsstunde konnte nicht erstellt werden:", error);
+    return;
+  }
+
+  redirect(`/verwaltung/unterricht/${groupId}/${data.id}`);
+}
+
+export async function saveAttendance(lessonId, studentIds, formData) {
+  const supabase = await createClient();
+
+  const rows = studentIds.map((studentId) => ({
+    lesson_id: lessonId,
+    student_id: studentId,
+    present: formData.get(`present-${studentId}`) === "on",
+    homework_done: formData.get(`homework-${studentId}`) === "on",
+    notes: formData.get(`notes-${studentId}`) || null,
+  }));
+
+  if (rows.length > 0) {
+    await supabase.from("attendance").upsert(rows, { onConflict: "lesson_id,student_id" });
+  }
+
+  revalidatePath(`/verwaltung/unterricht/${lessonId}`);
+}
