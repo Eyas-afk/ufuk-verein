@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getDictionary } from "./dictionaries";
+import LogoIntro from "./LogoIntro";
 
 export default async function HomePage({ params }) {
   const { lang } = await params;
@@ -7,7 +8,8 @@ export default async function HomePage({ params }) {
 
   return (
     <div className="mx-auto max-w-3xl space-y-8 px-4 py-12">
-      <h1 className="text-3xl font-bold">{dict.home.title}</h1>
+      <LogoIntro />
+      <h1 className="text-center text-3xl font-bold sm:text-start">{dict.home.title}</h1>
       <p className="text-lg text-neutral-600">{dict.home.subtitle}</p>
       <p className="leading-relaxed">{dict.home.about}</p>
 
