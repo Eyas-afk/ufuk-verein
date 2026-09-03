@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import LanguageSwitcher from "./LanguageSwitcher";
+import MobileNav from "./MobileNav";
 
 export default function Header({ dict, lang }) {
   return (
-    <header className="border-b border-neutral-200">
+    <header className="relative border-b border-neutral-200">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
         <Link href={`/${lang}`} className="flex items-center gap-3">
           <Image
@@ -16,7 +17,8 @@ export default function Header({ dict, lang }) {
           />
           <span className="text-lg font-bold">{dict.nav.brand}</span>
         </Link>
-        <nav className="flex items-center gap-5">
+
+        <nav className="hidden items-center gap-5 sm:flex">
           <Link href={`/${lang}`} className="hover:underline">
             {dict.nav.home}
           </Link>
@@ -28,6 +30,8 @@ export default function Header({ dict, lang }) {
           </Link>
           <LanguageSwitcher lang={lang} />
         </nav>
+
+        <MobileNav dict={dict} lang={lang} />
       </div>
     </header>
   );
