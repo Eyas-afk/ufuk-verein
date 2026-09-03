@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function StudentPicker({ options, initialSelectedIds }) {
+export default function StudentPicker({ options, initialSelectedIds, t }) {
   const [selectedIds, setSelectedIds] = useState(initialSelectedIds);
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
@@ -29,7 +29,7 @@ export default function StudentPicker({ options, initialSelectedIds }) {
 
       <div className="mb-2 flex flex-wrap gap-2">
         {selected.length === 0 && (
-          <span className="text-sm text-neutral-500">Noch keine Schüler zugewiesen.</span>
+          <span className="text-sm text-neutral-500">{t.noStudentsYet}</span>
         )}
         {selected.map((s) => (
           <span
@@ -37,12 +37,12 @@ export default function StudentPicker({ options, initialSelectedIds }) {
             className="flex items-center gap-1 rounded-full bg-orange-100 px-3 py-1 text-sm"
           >
             {s.name}
-            {s.otherGroup && <span className="text-neutral-400"> (andere Gruppe)</span>}
+            {s.otherGroup && <span className="text-neutral-400"> {t.otherGroup}</span>}
             <button
               type="button"
               onClick={() => remove(s.id)}
               className="text-neutral-500 hover:text-red-600"
-              aria-label={`${s.name} entfernen`}
+              aria-label={s.name}
             >
               ×
             </button>
@@ -56,7 +56,7 @@ export default function StudentPicker({ options, initialSelectedIds }) {
           onClick={() => setOpen(true)}
           className="text-sm text-orange-600 underline"
         >
-          + Schüler hinzufügen
+          {t.addStudent}
         </button>
       )}
 
@@ -67,22 +67,22 @@ export default function StudentPicker({ options, initialSelectedIds }) {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Namen eingeben …"
+            placeholder={t.typeToSearch}
             className="w-full rounded-lg border border-neutral-300 px-3 py-2"
           />
           <div className="mt-1 max-h-48 overflow-y-auto rounded-lg border border-neutral-200 bg-white">
             {available.length === 0 && (
-              <p className="p-2 text-sm text-neutral-500">Keine Treffer.</p>
+              <p className="p-2 text-sm text-neutral-500">{t.noResults}</p>
             )}
             {available.map((o) => (
               <button
                 key={o.id}
                 type="button"
                 onClick={() => add(o.id)}
-                className="block w-full px-3 py-2 text-left text-sm hover:bg-orange-50"
+                className="block w-full px-3 py-2 text-start text-sm hover:bg-orange-50"
               >
                 {o.name}
-                {o.otherGroup && <span className="text-neutral-400"> (andere Gruppe)</span>}
+                {o.otherGroup && <span className="text-neutral-400"> {t.otherGroup}</span>}
               </button>
             ))}
           </div>
@@ -91,7 +91,7 @@ export default function StudentPicker({ options, initialSelectedIds }) {
             onClick={() => setOpen(false)}
             className="mt-1 text-sm text-neutral-500 underline"
           >
-            Schließen
+            {t.close}
           </button>
         </div>
       )}

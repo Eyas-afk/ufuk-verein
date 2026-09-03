@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function TeacherPicker({ options, initialId }) {
+export default function TeacherPicker({ options, initialId, t }) {
   const [selectedId, setSelectedId] = useState(initialId ?? "");
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
@@ -26,9 +26,9 @@ export default function TeacherPicker({ options, initialId }) {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-left"
+          className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-start"
         >
-          {selected ? selected.name : "Kein Lehrer zugewiesen"}
+          {selected ? selected.name : t.noTeacherAssigned}
         </button>
       )}
 
@@ -39,26 +39,26 @@ export default function TeacherPicker({ options, initialId }) {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Namen eingeben …"
+            placeholder={t.typeToSearch}
             className="w-full rounded-lg border border-neutral-300 px-3 py-2"
           />
           <div className="mt-1 max-h-48 overflow-y-auto rounded-lg border border-neutral-200 bg-white">
             <button
               type="button"
               onClick={() => select("")}
-              className="block w-full px-3 py-2 text-left text-sm text-neutral-500 hover:bg-orange-50"
+              className="block w-full px-3 py-2 text-start text-sm text-neutral-500 hover:bg-orange-50"
             >
-              Kein Lehrer zugewiesen
+              {t.noTeacherAssigned}
             </button>
             {available.length === 0 && (
-              <p className="p-2 text-sm text-neutral-500">Keine Treffer.</p>
+              <p className="p-2 text-sm text-neutral-500">{t.noResults}</p>
             )}
             {available.map((o) => (
               <button
                 key={o.id}
                 type="button"
                 onClick={() => select(o.id)}
-                className="block w-full px-3 py-2 text-left text-sm hover:bg-orange-50"
+                className="block w-full px-3 py-2 text-start text-sm hover:bg-orange-50"
               >
                 {o.name}
               </button>
@@ -69,7 +69,7 @@ export default function TeacherPicker({ options, initialId }) {
             onClick={() => setOpen(false)}
             className="mt-1 text-sm text-neutral-500 underline"
           >
-            Schließen
+            {t.close}
           </button>
         </div>
       )}

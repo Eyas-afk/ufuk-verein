@@ -6,6 +6,7 @@ import AccessDenied from "../../AccessDenied";
 import VerwaltungHeader from "../../VerwaltungHeader";
 import { saveGroup } from "../../actions";
 import { weekdays, weekdayLabels } from "@/lib/weekdays";
+import { getAdminDict } from "@/lib/adminDictionary";
 import TeacherPicker from "./TeacherPicker";
 import StudentPicker from "./StudentPicker";
 import SaveGroupButtons from "./SaveGroupButtons";
@@ -19,7 +20,12 @@ export default async function GruppeBearbeitenPage({ params }) {
   const { supabase, user, profile } = await getSessionAndProfile();
 
   if (!user) return <LoginForm />;
-  if (profile?.role !== "verwaltung") return <AccessDenied />;
+
+  const locale = profile?.locale === "de" ? "de" : "ar";
+  if (profile?.role !== "verwaltung") return <AccessDenied locale={locale} />;
+
+  const t = getAdminDict(locale).groups;
+  const tp = getAdminDict(locale).pickers;
 
   const { data: group } = await supabase
     .from("groups")
@@ -49,23 +55,24 @@ export default async function GruppeBearbeitenPage({ params }) {
       <VerwaltungHeader profile={profile} user={user} active="gruppen" />
       <div className="mx-auto max-w-2xl px-4 py-10">
         <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
-          <h1 className="text-2xl font-bold text-neutral-900">Gruppe bearbeiten</h1>
+          <h1 className="text-2xl font-bold text-neutral-900">{t.editTitle}</h1>
           <Link
             href={`/verwaltung/unterricht/${group.id}`}
             className="text-sm text-orange-600 underline"
           >
-            Unterrichtsstunden ansehen/bearbeiten →
+            {t.viewLessons}
           </Link>
         </div>
         {group.last_notified_at && (
           <p className="mb-6 text-sm text-neutral-500">
-            Zuletzt benachrichtigt: {new Date(group.last_notified_at).toLocaleString("de-DE")}
+            {t.lastNotified}
+            {new Date(group.last_notified_at).toLocaleString(locale === "de" ? "de-DE" : "ar-SY")}
           </p>
         )}
 
         <form className="space-y-6 rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
           <div>
-            <label className={labelClass}>Gruppenname</label>
+            <label className={labelClass}>{t.groupName}</label>
             <input
               name="name"
               type="text"
@@ -76,31 +83,32 @@ export default async function GruppeBearbeitenPage({ params }) {
           </div>
 
           <div>
-            <label className={labelClass}>Lehrer</label>
+            <label className={labelClass}>{t.teacherLabel}</label>
             <TeacherPicker
-              options={(teachers ?? []).map((t) => ({ id: t.id, name: t.full_name }))}
+              options={(teachers ?? []).map((tc) => ({ id: tc.id, name: tc.full_name }))}
               initialId={group.teacher_id}
+              t={tp}
             />
           </div>
 
           <div className="flex flex-wrap gap-4">
             <div className="flex-1 basis-40">
-              <label className={labelClass}>Wochentag</label>
+              <label className={labelClass}>{t.weekday}</label>
               <select
                 name="weekday"
                 defaultValue={group.weekday ?? ""}
                 className={fieldClass}
               >
-                <option value="">Kein Tag festgelegt</option>
+                <option value="">{t.noDay}</option>
                 {weekdays.map((w) => (
                   <option key={w} value={w}>
-                    {weekdayLabels[w].de}
+                    {weekdayLabels[w][locale]}
                   </option>
                 ))}
               </select>
             </div>
             <div>
-              <label className={labelClass}>Von</label>
+              <label className={labelClass}>{t.from}</label>
               <input
                 name="startTime"
                 type="time"
@@ -109,7 +117,7 @@ export default async function GruppeBearbeitenPage({ params }) {
               />
             </div>
             <div>
-              <label className={labelClass}>Bis</label>
+              <label className={labelClass}>{t.to}</label>
               <input
                 name="endTime"
                 type="time"
@@ -120,7 +128,9 @@ export default async function GruppeBearbeitenPage({ params }) {
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-neutral-700">Schüler</label>
+            <label className="mb-2 block text-sm font-medium text-neutral-700">
+              {t.studentsLabel}
+            </label>
             <StudentPicker
               options={(children ?? []).map((c) => ({
                 id: c.id,
@@ -130,11 +140,12 @@ export default async function GruppeBearbeitenPage({ params }) {
               initialSelectedIds={(children ?? [])
                 .filter((c) => c.group_id === group.id)
                 .map((c) => c.id)}
+              t={tp}
             />
           </div>
 
           <div className="border-t border-neutral-100 pt-5">
-            <SaveGroupButtons saveAction={save} saveAndNotifyAction={saveAndNotify} />
+            <SaveGroupButtons saveAction={save} saveAndNotifyAction={saveAndNotify} t={t} />
           </div>
         </form>
       </div>

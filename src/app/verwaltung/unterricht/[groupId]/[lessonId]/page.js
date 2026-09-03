@@ -5,6 +5,7 @@ import LoginForm from "../../../LoginForm";
 import AccessDenied from "../../../AccessDenied";
 import VerwaltungHeader from "../../../VerwaltungHeader";
 import SubmitButton from "../../../SubmitButton";
+import { getAdminDict } from "@/lib/adminDictionary";
 import { saveAttendance } from "../../../actions";
 
 export default async function UnterrichtsstundePage({ params }) {
@@ -12,6 +13,10 @@ export default async function UnterrichtsstundePage({ params }) {
   const { supabase, user, profile } = await getSessionAndProfile();
 
   if (!user) return <LoginForm />;
+
+  const locale = profile?.locale === "de" ? "de" : "ar";
+  const t = getAdminDict(locale).lessons;
+  const tAccess = getAdminDict(locale).accessDenied;
 
   const { data: group } = await supabase
     .from("groups")
@@ -25,7 +30,7 @@ export default async function UnterrichtsstundePage({ params }) {
   const isVerwaltung = profile?.role === "verwaltung";
 
   if (!isOwnGroup && !isVerwaltung) {
-    return <AccessDenied message="Diese Gruppe ist nicht dir zugewiesen." />;
+    return <AccessDenied locale={locale} message={tAccess.notYourGroup} />;
   }
 
   const { data: lesson } = await supabase
@@ -60,7 +65,7 @@ export default async function UnterrichtsstundePage({ params }) {
       <div className="mx-auto max-w-3xl px-4 py-10">
         <h1 className="mb-1 text-2xl font-bold text-neutral-900">{group.name}</h1>
         <p className="mb-6 text-neutral-500">
-          {new Date(lesson.date).toLocaleDateString("de-DE", {
+          {new Date(lesson.date).toLocaleDateString(locale === "de" ? "de-DE" : "ar-SY", {
             weekday: "long",
             year: "numeric",
             month: "long",
@@ -70,7 +75,7 @@ export default async function UnterrichtsstundePage({ params }) {
 
         {(!students || students.length === 0) && (
           <div className="rounded-xl border border-dashed border-neutral-300 bg-white p-8 text-center text-neutral-500">
-            Dieser Gruppe sind noch keine Schüler zugewiesen.
+            {t.noStudents}
           </div>
         )}
 
@@ -91,7 +96,7 @@ export default async function UnterrichtsstundePage({ params }) {
                       defaultChecked={a?.present ?? false}
                       className="h-4 w-4 accent-orange-600"
                     />
-                    Anwesend
+                    {t.present}
                   </label>
                   <label className="flex items-center gap-2 text-sm text-neutral-700">
                     <input
@@ -100,12 +105,12 @@ export default async function UnterrichtsstundePage({ params }) {
                       defaultChecked={a?.homework_done ?? false}
                       className="h-4 w-4 accent-orange-600"
                     />
-                    Hausaufgabe erledigt
+                    {t.homeworkDone}
                   </label>
                 </div>
                 <div className="mt-3">
                   <label className="mb-1 block text-sm font-medium text-neutral-700">
-                    Anmerkungen
+                    {t.notes}
                   </label>
                   <textarea
                     name={`notes-${s.id}`}
@@ -119,7 +124,7 @@ export default async function UnterrichtsstundePage({ params }) {
           })}
 
           {students?.length > 0 && (
-            <SubmitButton pendingText="Wird gespeichert …">Speichern</SubmitButton>
+            <SubmitButton pendingText={t.saving}>{t.save}</SubmitButton>
           )}
         </form>
 
@@ -127,7 +132,7 @@ export default async function UnterrichtsstundePage({ params }) {
           href={`/verwaltung/unterricht/${groupId}`}
           className="mt-6 inline-block text-sm text-neutral-500 underline"
         >
-          ← Alle Stunden dieser Gruppe
+          {t.backToLessons}
         </Link>
       </div>
     </div>

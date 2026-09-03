@@ -5,6 +5,7 @@ import LoginForm from "../../LoginForm";
 import AccessDenied from "../../AccessDenied";
 import VerwaltungHeader from "../../VerwaltungHeader";
 import SubmitButton from "../../SubmitButton";
+import { getAdminDict } from "@/lib/adminDictionary";
 import { createLesson } from "../../actions";
 
 export default async function UnterrichtGruppePage({ params }) {
@@ -12,6 +13,10 @@ export default async function UnterrichtGruppePage({ params }) {
   const { supabase, user, profile } = await getSessionAndProfile();
 
   if (!user) return <LoginForm />;
+
+  const locale = profile?.locale === "de" ? "de" : "ar";
+  const t = getAdminDict(locale).lessons;
+  const tAccess = getAdminDict(locale).accessDenied;
 
   const { data: group } = await supabase
     .from("groups")
@@ -25,7 +30,7 @@ export default async function UnterrichtGruppePage({ params }) {
   const isVerwaltung = profile?.role === "verwaltung";
 
   if (!isOwnGroup && !isVerwaltung) {
-    return <AccessDenied message="Diese Gruppe ist nicht dir zugewiesen." />;
+    return <AccessDenied locale={locale} message={tAccess.notYourGroup} />;
   }
 
   const { data: lessons } = await supabase
@@ -42,16 +47,16 @@ export default async function UnterrichtGruppePage({ params }) {
       <div className="mx-auto max-w-2xl px-4 py-10">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <h1 className="text-2xl font-bold text-neutral-900">
-            {group.name} <span className="font-normal text-neutral-400">– Unterrichtsstunden</span>
+            {group.name} <span className="font-normal text-neutral-400">{t.lessonsSuffix}</span>
           </h1>
           <form action={createForGroup}>
-            <SubmitButton pendingText="Wird angelegt …">+ Neue Stunde (heute)</SubmitButton>
+            <SubmitButton pendingText={t.creating}>{t.newLesson}</SubmitButton>
           </form>
         </div>
 
         {(!lessons || lessons.length === 0) && (
           <div className="rounded-xl border border-dashed border-neutral-300 bg-white p-8 text-center text-neutral-500">
-            Noch keine Unterrichtsstunden erfasst.
+            {t.none}
           </div>
         )}
 
@@ -62,7 +67,7 @@ export default async function UnterrichtGruppePage({ params }) {
               href={`/verwaltung/unterricht/${groupId}/${l.id}`}
               className="block rounded-xl border border-neutral-200 bg-white p-4 shadow-sm transition hover:border-orange-400 hover:shadow"
             >
-              {new Date(l.date).toLocaleDateString("de-DE", {
+              {new Date(l.date).toLocaleDateString(locale === "de" ? "de-DE" : "ar-SY", {
                 weekday: "long",
                 year: "numeric",
                 month: "long",
@@ -76,7 +81,7 @@ export default async function UnterrichtGruppePage({ params }) {
           href={isVerwaltung ? `/verwaltung/gruppen/${groupId}` : "/verwaltung"}
           className="mt-6 inline-block text-sm text-neutral-500 underline"
         >
-          ← Zurück zur Gruppe
+          {t.backToGroup}
         </Link>
       </div>
     </div>

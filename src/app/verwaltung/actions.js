@@ -20,13 +20,13 @@ export async function login(formData) {
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) {
-    return { error: "E-Mail oder Passwort ist falsch." };
+    return { error: "invalid_credentials" };
   }
 
   revalidatePath("/verwaltung");
 }
 
-export async function requestPasswordReset(formData) {
+export async function requestPasswordReset(locale, formData) {
   const email = formData.get("email");
 
   try {
@@ -36,7 +36,7 @@ export async function requestPasswordReset(formData) {
       type: "recovery",
       email,
       options: {
-        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/passwort-zuruecksetzen`,
+        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/passwort-zuruecksetzen?lang=${locale}`,
       },
     });
 
@@ -49,9 +49,19 @@ export async function requestPasswordReset(formData) {
     console.error("Passwort-Reset-Link konnte nicht erstellt/gesendet werden:", err);
   }
 
-  return {
-    message: "Falls ein Konto mit dieser E-Mail existiert, wurde ein Link zum Zurücksetzen verschickt.",
-  };
+  return { sent: true };
+}
+
+export async function setMyLocale(locale, formData) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return;
+
+  await supabase.from("profiles").update({ locale }).eq("id", user.id);
+  revalidatePath("/verwaltung", "layout");
 }
 
 export async function logout() {

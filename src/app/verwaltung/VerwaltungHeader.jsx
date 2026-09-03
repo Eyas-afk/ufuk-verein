@@ -1,13 +1,17 @@
 import Link from "next/link";
 import { logout } from "./actions";
-
-const NAV_ITEMS = [
-  { key: "antraege", href: "/verwaltung", label: "Anträge" },
-  { key: "gruppen", href: "/verwaltung/gruppen", label: "Gruppen" },
-];
+import AdminLanguageSwitcher from "./AdminLanguageSwitcher";
+import { getAdminDict } from "@/lib/adminDictionary";
 
 export default function VerwaltungHeader({ profile, user, active }) {
+  const locale = profile?.locale === "de" ? "de" : "ar";
+  const t = getAdminDict(locale).header;
   const isVerwaltung = profile?.role === "verwaltung";
+
+  const NAV_ITEMS = [
+    { key: "antraege", href: "/verwaltung", label: t.antraege },
+    { key: "gruppen", href: "/verwaltung/gruppen", label: t.gruppen },
+  ];
 
   return (
     <header className="sticky top-0 z-10 border-b border-neutral-200 bg-white/95 backdrop-blur">
@@ -21,7 +25,7 @@ export default function VerwaltungHeader({ profile, user, active }) {
               className="h-8 w-8 rounded-full object-cover"
             />
             <span className="font-bold text-neutral-900">
-              {isVerwaltung ? "Verwaltung" : "Lehrer-Bereich"}
+              {isVerwaltung ? t.verwaltung : t.lehrerBereich}
             </span>
           </Link>
 
@@ -44,11 +48,12 @@ export default function VerwaltungHeader({ profile, user, active }) {
           )}
         </div>
 
-        <div className="flex items-center gap-3 text-sm">
+        <div className="flex items-center gap-4 text-sm">
+          <AdminLanguageSwitcher locale={locale} />
           <span className="text-neutral-500">{profile?.full_name || user?.email}</span>
           <form action={logout}>
             <button type="submit" className="text-neutral-500 underline hover:text-neutral-900">
-              Abmelden
+              {t.logout}
             </button>
           </form>
         </div>
