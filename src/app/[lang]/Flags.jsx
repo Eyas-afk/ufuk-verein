@@ -14,11 +14,13 @@ export function FlagSY({ className }) {
   return (
     <svg viewBox="0 0 30 20" className={className} aria-hidden="true">
       <rect width="30" height="20" fill="#000000" />
-      <rect width="30" height="6.67" fill="#CE1126" />
+      <rect width="30" height="6.67" fill="#007A3D" />
       <rect width="30" height="6.67" y="6.67" fill="#FFFFFF" />
-      <g fill="#007A3D">
-        <path d={star} transform="translate(9.5, 6.2) scale(0.35)" />
-        <path d={star} transform="translate(18.5, 6.2) scale(0.35)" />
+      <rect width="30" height="6.67" y="13.33" fill="#000000" />
+      <g fill="#CE1126">
+        <path d={star} transform="translate(7, 6.2) scale(0.32)" />
+        <path d={star} transform="translate(15, 6.2) scale(0.32)" />
+        <path d={star} transform="translate(23, 6.2) scale(0.32)" />
       </g>
     </svg>
   );
