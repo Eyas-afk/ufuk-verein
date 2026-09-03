@@ -9,6 +9,7 @@ import {
   sendRegistrationApprovedEmail,
   sendGroupAssignedParentEmail,
   sendGroupAssignedTeacherEmail,
+  sendPasswordResetEmail,
 } from "@/lib/email";
 
 export async function login(formData) {
@@ -23,6 +24,34 @@ export async function login(formData) {
   }
 
   revalidatePath("/verwaltung");
+}
+
+export async function requestPasswordReset(formData) {
+  const email = formData.get("email");
+
+  try {
+    const admin = createAdminClient();
+
+    const { data: linkData, error } = await admin.auth.admin.generateLink({
+      type: "recovery",
+      email,
+      options: {
+        redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/passwort-zuruecksetzen`,
+      },
+    });
+
+    if (!error && linkData?.properties?.action_link) {
+      await sendPasswordResetEmail({ to: email, link: linkData.properties.action_link });
+    }
+  } catch (err) {
+    // Absichtlich nicht an die Oberfläche weiterreichen: würde es hier einen Fehler
+    // zeigen, könnte man dadurch herausfinden, welche E-Mails registriert sind.
+    console.error("Passwort-Reset-Link konnte nicht erstellt/gesendet werden:", err);
+  }
+
+  return {
+    message: "Falls ein Konto mit dieser E-Mail existiert, wurde ein Link zum Zurücksetzen verschickt.",
+  };
 }
 
 export async function logout() {

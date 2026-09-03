@@ -149,3 +149,19 @@ export async function sendGroupAssignedTeacherEmail({
     html: t.html(groupName, schedule, studentNames),
   });
 }
+
+// Nur Deutsch: wird ausschließlich vom (einsprachigen) Verwaltungsbereich ausgelöst.
+export async function sendPasswordResetEmail({ to, link }) {
+  return resend.emails.send({
+    from,
+    to,
+    subject: "Passwort zurücksetzen – Ufuk e.V.",
+    html: `
+      <p>Hallo,</p>
+      <p>du hast eine Zurücksetzung deines Passworts angefordert.</p>
+      <p><a href="${link}">Neues Passwort festlegen</a></p>
+      <p>Falls du das nicht warst, kannst du diese E-Mail einfach ignorieren.</p>
+      <p>Viele Grüße<br/>Ufuk e.V.</p>
+    `,
+  });
+}
