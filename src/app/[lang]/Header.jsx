@@ -5,7 +5,7 @@ import MobileNav from "./MobileNav";
 
 export default function Header({ dict, lang }) {
   return (
-    <header className="relative border-b border-neutral-200">
+    <header className="relative bg-orange-600 text-white">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3">
         <Link href={`/${lang}`} className="flex items-center gap-3">
           <Image

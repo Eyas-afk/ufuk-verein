@@ -20,7 +20,7 @@ export default function MobileNav({ dict, lang }) {
         onClick={() => setOpen((v) => !v)}
         aria-label="Menü"
         aria-expanded={open}
-        className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-300"
+        className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/60 text-white"
       >
         {open ? (
           <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">

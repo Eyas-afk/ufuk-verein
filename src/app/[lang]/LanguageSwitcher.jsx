@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FlagDE, FlagSY } from "./Flags";
 
 const languages = [
-  { code: "ar", label: "العربية" },
-  { code: "de", label: "Deutsch" },
+  { code: "ar", Flag: FlagSY, label: "العربية" },
+  { code: "de", Flag: FlagDE, label: "Deutsch" },
 ];
 
 export default function LanguageSwitcher({ lang }) {
@@ -13,18 +14,16 @@ export default function LanguageSwitcher({ lang }) {
   const rest = pathname.split("/").slice(2).join("/");
 
   return (
-    <div className="flex items-center gap-3 text-sm">
+    <div className="flex items-center gap-2">
       {languages.map((l) => (
         <Link
           key={l.code}
           href={`/${l.code}${rest ? `/${rest}` : ""}`}
-          className={
-            l.code === lang
-              ? "font-semibold underline"
-              : "text-neutral-500 hover:underline"
-          }
+          title={l.label}
+          aria-label={l.label}
+          className={l.code === lang ? "opacity-100" : "opacity-50 hover:opacity-80"}
         >
-          {l.label}
+          <l.Flag className="h-4 w-6 rounded-sm shadow-sm" />
         </Link>
       ))}
     </div>
