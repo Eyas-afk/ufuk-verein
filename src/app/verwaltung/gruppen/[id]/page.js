@@ -4,12 +4,13 @@ import { getSessionAndProfile } from "../../auth";
 import LoginForm from "../../LoginForm";
 import AccessDenied from "../../AccessDenied";
 import VerwaltungHeader from "../../VerwaltungHeader";
-import { saveGroup } from "../../actions";
+import { saveGroup, deleteGroup } from "../../actions";
 import { weekdays, weekdayLabels } from "@/lib/weekdays";
 import { getAdminDict } from "@/lib/adminDictionary";
 import TeacherPicker from "./TeacherPicker";
 import StudentPicker from "./StudentPicker";
 import SaveGroupButtons from "./SaveGroupButtons";
+import DeleteGroupButton from "./DeleteGroupButton";
 
 const fieldClass =
   "w-full rounded-lg border border-neutral-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500";
@@ -49,6 +50,7 @@ export default async function GruppeBearbeitenPage({ params }) {
 
   const save = saveGroup.bind(null, group.id, false);
   const saveAndNotify = saveGroup.bind(null, group.id, true);
+  const remove = deleteGroup.bind(null, group.id);
 
   return (
     <div>
@@ -148,6 +150,10 @@ export default async function GruppeBearbeitenPage({ params }) {
             <SaveGroupButtons saveAction={save} saveAndNotifyAction={saveAndNotify} t={t} />
           </div>
         </form>
+
+        <div className="mt-4 flex justify-end">
+          <DeleteGroupButton deleteAction={remove} t={t} />
+        </div>
       </div>
     </div>
   );

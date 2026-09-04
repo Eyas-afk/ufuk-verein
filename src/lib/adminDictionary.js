@@ -74,6 +74,9 @@ export const adminDictionary = {
       saving: "Wird gespeichert …",
       confirmNotify: "Bestätigen & Benachrichtigen",
       notifying: "Wird benachrichtigt …",
+      delete: "Gruppe löschen",
+      deleting: "Wird gelöscht …",
+      deleteConfirm: "Diese Gruppe inkl. aller erfassten Unterrichtsstunden und Anwesenheiten wirklich löschen? Das kann nicht rückgängig gemacht werden.",
     },
     pickers: {
       noTeacherAssigned: "Kein Lehrer zugewiesen",
@@ -187,6 +190,9 @@ export const adminDictionary = {
       saving: "جارٍ الحفظ …",
       confirmNotify: "تأكيد وإرسال إشعار",
       notifying: "جارٍ الإرسال …",
+      delete: "حذف المجموعة",
+      deleting: "جارٍ الحذف …",
+      deleteConfirm: "هل تريد حقًا حذف هذه المجموعة بما في ذلك جميع الحصص وسجلات الحضور المسجلة؟ لا يمكن التراجع عن هذا الإجراء.",
     },
     pickers: {
       noTeacherAssigned: "لم يتم تعيين معلم",

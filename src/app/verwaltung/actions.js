@@ -249,6 +249,17 @@ export async function saveGroup(id, notify, formData) {
   revalidatePath("/verwaltung");
 }
 
+export async function deleteGroup(id) {
+  const supabase = await createClient();
+
+  // Kaskadiert in der Datenbank auf lessons/attendance dieser Gruppe;
+  // registrations.group_id wird automatisch auf NULL gesetzt (kein Datenverlust bei Kindern).
+  await supabase.from("groups").delete().eq("id", id);
+
+  revalidatePath("/verwaltung/gruppen");
+  redirect("/verwaltung/gruppen");
+}
+
 export async function createLesson(groupId) {
   const supabase = await createClient();
   const today = new Date().toISOString().slice(0, 10);
