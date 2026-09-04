@@ -34,7 +34,7 @@ export default function MobileNav({ dict, lang }) {
       </button>
 
       {open && (
-        <div className="absolute inset-x-0 top-full z-10 border-b border-neutral-200 bg-[#fefdec] px-4 py-3 shadow-sm">
+        <div className="absolute inset-x-0 top-full z-10 border-b border-neutral-200 bg-[#fefdec] px-4 py-3 text-neutral-900 shadow-sm">
           <nav className="flex flex-col gap-3">
             {links.map((l) => (
               <Link
