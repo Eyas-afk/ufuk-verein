@@ -70,7 +70,7 @@ export default function LoginForm() {
 
   if (mode === "forgot") {
     return (
-      <div dir={dir} className="flex min-h-screen items-center justify-center bg-neutral-50 px-4">
+      <div dir={dir} className="flex min-h-screen items-center justify-center px-4">
         <form
           action={handleForgot}
           className="w-full max-w-sm space-y-4 rounded-xl border border-neutral-200 bg-white p-8 shadow-sm"
@@ -113,7 +113,7 @@ export default function LoginForm() {
   }
 
   return (
-    <div dir={dir} className="flex min-h-screen items-center justify-center bg-neutral-50 px-4">
+    <div dir={dir} className="flex min-h-screen items-center justify-center px-4">
       <form
         action={handleLogin}
         className="w-full max-w-sm space-y-4 rounded-xl border border-neutral-200 bg-white p-8 shadow-sm"

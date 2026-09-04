@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { getDictionary, hasLocale, locales } from "./dictionaries";
 import Header from "./Header";
+import CalligraphyBackground from "../CalligraphyBackground";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,6 +43,7 @@ export default async function RootLayout({ children, params }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <CalligraphyBackground />
         <Header dict={dict} lang={lang} />
         <main className="flex-1">{children}</main>
         <footer className="border-t border-neutral-200 py-6 text-center text-sm text-neutral-500">
