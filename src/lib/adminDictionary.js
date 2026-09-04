@@ -77,6 +77,8 @@ export const adminDictionary = {
       delete: "Gruppe löschen",
       deleting: "Wird gelöscht …",
       deleteConfirm: "Diese Gruppe inkl. aller erfassten Unterrichtsstunden und Anwesenheiten wirklich löschen? Das kann nicht rückgängig gemacht werden.",
+      deleteYes: "Ja, endgültig löschen",
+      deleteCancel: "Abbrechen",
     },
     pickers: {
       noTeacherAssigned: "Kein Lehrer zugewiesen",
@@ -193,6 +195,8 @@ export const adminDictionary = {
       delete: "حذف المجموعة",
       deleting: "جارٍ الحذف …",
       deleteConfirm: "هل تريد حقًا حذف هذه المجموعة بما في ذلك جميع الحصص وسجلات الحضور المسجلة؟ لا يمكن التراجع عن هذا الإجراء.",
+      deleteYes: "نعم، احذف نهائيًا",
+      deleteCancel: "إلغاء",
     },
     pickers: {
       noTeacherAssigned: "لم يتم تعيين معلم",
