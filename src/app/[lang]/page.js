@@ -16,6 +16,20 @@ export default async function HomePage({ params }) {
       <p className="text-lg text-neutral-600">{dict.home.subtitle}</p>
       <p className="leading-relaxed">{dict.home.about}</p>
 
+      <section className="relative overflow-hidden rounded-2xl border-s-4 border-orange-500 bg-orange-50/70 p-6 sm:p-8">
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-6 start-4 text-9xl font-serif text-orange-200 select-none rtl:-scale-x-100"
+        >
+          &ldquo;
+        </span>
+        <div className="relative">
+          <h2 className="mb-3 text-2xl font-bold text-orange-800">{dict.home.whyTitle}</h2>
+          <p className="leading-relaxed text-neutral-700">{dict.home.whyText1}</p>
+          <p className="mt-4 leading-relaxed text-neutral-700">{dict.home.whyText2}</p>
+        </div>
+      </section>
+
       <div>
         <h2 className="mb-4 text-xl font-semibold">{dict.home.coursesTitle}</h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
