@@ -11,10 +11,12 @@
   },
   "home": {
     "title": "Ufuk e.V.",
-    "subtitle": "Arabischkurse für Kinder arabischer Herkunft",
+    "subtitle": "Arabischkurse für Kinder",
+    "aboutTitle": "Was wir anbieten",
     "about": "Ufuk e.V. bietet Kindern arabischer Herkunft Arabischunterricht in Wort und Schrift – sowohl für Kinder, die Arabisch bereits sprechen, aber nicht schreiben können, als auch für Kinder, die die Sprache noch gar nicht beherrschen. Die Kinder werden nach Alter und Vorwissen in Gruppen eingeteilt.",
     "whyTitle": "Warum es Ufuk gibt",
     "whyText1": "Ufuk wurde gegründet, um Kindern arabischer Herkunft in Deutschland ihre Muttersprache in Wort und Schrift näherzubringen – denn je früher damit begonnen wird, desto leichter und nachhaltiger gelingt das Lernen. Aber nicht nur das: Auch Kinder und Jugendliche jeder anderen Herkunft, die Interesse an der arabischen Sprache haben, sind bei uns herzlich willkommen.",
+    "joinTitle": "Werde Teil unseres Teams",
     "whyText2": "Unser Verein lebt vom Engagement freiwilliger Lehrkräfte. Wer Arabisch in Wort und Schrift beherrscht und etwas Gutes für die Gesellschaft bewirken möchte, ist bei uns genau richtig – gute Deutschkenntnisse sind dabei von Vorteil.",
     "coursesTitle": "Aktuell verfügbare Unterrichtsorte",
     "locations": ["Mölln", "Ratzeburg", "Schwarzenbeck"],

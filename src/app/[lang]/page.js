@@ -22,11 +22,19 @@ export default async function HomePage({ params }) {
         >
           &ldquo;
         </span>
-        <div className="relative space-y-4">
-          <h2 className="mb-1 text-2xl font-bold text-orange-800">{dict.home.whyTitle}</h2>
-          <p className="leading-relaxed text-neutral-700">{dict.home.about}</p>
-          <p className="leading-relaxed text-neutral-700">{dict.home.whyText1}</p>
-          <p className="leading-relaxed text-neutral-700">{dict.home.whyText2}</p>
+        <div className="relative space-y-6">
+          <div>
+            <h2 className="mb-2 text-xl font-bold text-orange-800">{dict.home.aboutTitle}</h2>
+            <p className="leading-relaxed text-neutral-700">{dict.home.about}</p>
+          </div>
+          <div>
+            <h2 className="mb-2 text-xl font-bold text-orange-800">{dict.home.whyTitle}</h2>
+            <p className="leading-relaxed text-neutral-700">{dict.home.whyText1}</p>
+          </div>
+          <div>
+            <h2 className="mb-2 text-xl font-bold text-orange-800">{dict.home.joinTitle}</h2>
+            <p className="leading-relaxed text-neutral-700">{dict.home.whyText2}</p>
+          </div>
         </div>
       </section>
 
