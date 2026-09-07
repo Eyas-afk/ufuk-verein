@@ -36,27 +36,26 @@ export default async function HomePage({ params }) {
       <h1 className="text-center text-3xl font-bold sm:text-start">{dict.home.title}</h1>
       <p className="text-lg text-neutral-600">{dict.home.subtitle}</p>
 
-      <div className="divide-y divide-orange-100">
+      <div className="space-y-6">
         {storySections.map((s, i) => (
           <div
             key={s.key}
-            className="grid gap-5 py-6 first:pt-0 last:pb-0 sm:grid-cols-[180px_1fr] sm:items-center"
+            className={`flex flex-col gap-6 rounded-2xl bg-white p-5 shadow-lg sm:items-center sm:p-6 ${
+              i % 2 === 0 ? "sm:flex-row-reverse" : "sm:flex-row"
+            }`}
           >
-            <div className="relative mx-auto aspect-[4/3] w-48 sm:mx-0 sm:w-full">
+            <div className="relative aspect-[4/3] w-full sm:w-72 sm:shrink-0">
               <Image
                 src={s.image}
                 alt=""
                 fill
-                sizes="(min-width: 640px) 180px, 12rem"
+                sizes="(min-width: 640px) 288px, 100vw"
                 className="rounded-2xl object-cover shadow-md"
               />
-              <span className="absolute -top-3 -start-3 flex h-9 w-9 items-center justify-center rounded-full bg-orange-600 text-sm font-bold text-white shadow">
-                {i + 1}
-              </span>
             </div>
             <div>
-              <h2 className="mb-2 text-xl font-bold text-orange-800">{s.title}</h2>
-              <p className="leading-relaxed text-neutral-700">{s.text}</p>
+              <h2 className="mb-2 text-2xl font-bold text-orange-800">{s.title}</h2>
+              <p className="text-lg leading-relaxed text-neutral-700">{s.text}</p>
             </div>
           </div>
         ))}
