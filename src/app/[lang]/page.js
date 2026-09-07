@@ -14,7 +14,6 @@ export default async function HomePage({ params }) {
       <LogoIntro />
       <h1 className="text-center text-3xl font-bold sm:text-start">{dict.home.title}</h1>
       <p className="text-lg text-neutral-600">{dict.home.subtitle}</p>
-      <p className="leading-relaxed">{dict.home.about}</p>
 
       <section className="relative overflow-hidden rounded-2xl border-s-4 border-orange-500 bg-orange-50/70 p-6 sm:p-8">
         <span
@@ -23,10 +22,11 @@ export default async function HomePage({ params }) {
         >
           &ldquo;
         </span>
-        <div className="relative">
-          <h2 className="mb-3 text-2xl font-bold text-orange-800">{dict.home.whyTitle}</h2>
+        <div className="relative space-y-4">
+          <h2 className="mb-1 text-2xl font-bold text-orange-800">{dict.home.whyTitle}</h2>
+          <p className="leading-relaxed text-neutral-700">{dict.home.about}</p>
           <p className="leading-relaxed text-neutral-700">{dict.home.whyText1}</p>
-          <p className="mt-4 leading-relaxed text-neutral-700">{dict.home.whyText2}</p>
+          <p className="leading-relaxed text-neutral-700">{dict.home.whyText2}</p>
         </div>
       </section>
 
