@@ -68,6 +68,9 @@ export default async function RootLayout({ children, params }) {
             <Link href={`/${lang}/datenschutz`} className="hover:underline">
               {dict.footer.linkDatenschutz}
             </Link>
+            <Link href={`/${lang}/vereinsordnung`} className="hover:underline">
+              {dict.footer.linkVereinsordnung}
+            </Link>
           </div>
         </footer>
       </body>

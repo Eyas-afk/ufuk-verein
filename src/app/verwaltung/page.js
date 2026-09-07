@@ -123,26 +123,13 @@ export default async function VerwaltungPage() {
                   <p>{t.location}: {r.location} · {t.school}: {r.school}</p>
                   <p>{t.speaksArabic}: {r.speaks_arabic ? t.yes : t.no}</p>
                 </div>
-                {(() => {
-                  const grantedConsents = [
-                    r.consent_photos_admin && t.consentPhotosAdminShort,
-                    r.consent_photos_public && t.consentPhotosPublicShort,
-                    r.consent_contact_list && t.consentContactListShort,
-                    r.consent_data_sharing_teachers && t.consentDataSharingTeachersShort,
-                  ].filter(Boolean);
-                  return grantedConsents.length > 0 ? (
-                    <div className="mt-2 flex flex-wrap gap-1.5">
-                      {grantedConsents.map((c) => (
-                        <span
-                          key={c}
-                          className="rounded-full bg-green-50 px-2 py-0.5 text-xs text-green-700"
-                        >
-                          {c}
-                        </span>
-                      ))}
-                    </div>
-                  ) : null;
-                })()}
+                {r.consent_photos_public && (
+                  <div className="mt-2">
+                    <span className="rounded-full bg-green-50 px-2 py-0.5 text-xs text-green-700">
+                      {t.consentPhotosPublicShort}
+                    </span>
+                  </div>
+                )}
                 <div className="mt-4 flex gap-2">
                   <form action={setRegistrationStatus.bind(null, r.id, "approved")}>
                     <SubmitButton variant="approve" pendingText={t.approving}>
