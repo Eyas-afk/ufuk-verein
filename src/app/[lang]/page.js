@@ -9,34 +9,58 @@ export default async function HomePage({ params }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
 
+  const storySections = [
+    {
+      key: "about",
+      title: dict.home.aboutTitle,
+      text: dict.home.about,
+      image: "/section-anbieten.jpeg",
+    },
+    {
+      key: "why",
+      title: dict.home.whyTitle,
+      text: dict.home.whyText1,
+      image: "/section-warum.jpeg",
+    },
+    {
+      key: "join",
+      title: dict.home.joinTitle,
+      text: dict.home.whyText2,
+      image: "/section-team.jpeg",
+    },
+  ];
+
   return (
     <div className="mx-auto max-w-3xl space-y-8 px-4 py-12">
       <LogoIntro />
       <h1 className="text-center text-3xl font-bold sm:text-start">{dict.home.title}</h1>
       <p className="text-lg text-neutral-600">{dict.home.subtitle}</p>
 
-      <section className="relative overflow-hidden rounded-2xl border-s-4 border-orange-500 bg-orange-50/70 p-6 sm:p-8">
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-6 start-4 text-9xl font-serif text-orange-200 select-none rtl:-scale-x-100"
-        >
-          &ldquo;
-        </span>
-        <div className="relative space-y-6">
-          <div>
-            <h2 className="mb-2 text-xl font-bold text-orange-800">{dict.home.aboutTitle}</h2>
-            <p className="leading-relaxed text-neutral-700">{dict.home.about}</p>
+      <div className="divide-y divide-orange-100">
+        {storySections.map((s, i) => (
+          <div
+            key={s.key}
+            className="grid gap-5 py-6 first:pt-0 last:pb-0 sm:grid-cols-[180px_1fr] sm:items-center"
+          >
+            <div className="relative mx-auto aspect-[4/3] w-48 sm:mx-0 sm:w-full">
+              <Image
+                src={s.image}
+                alt=""
+                fill
+                sizes="(min-width: 640px) 180px, 12rem"
+                className="rounded-2xl object-cover shadow-md"
+              />
+              <span className="absolute -top-3 -start-3 flex h-9 w-9 items-center justify-center rounded-full bg-orange-600 text-sm font-bold text-white shadow">
+                {i + 1}
+              </span>
+            </div>
+            <div>
+              <h2 className="mb-2 text-xl font-bold text-orange-800">{s.title}</h2>
+              <p className="leading-relaxed text-neutral-700">{s.text}</p>
+            </div>
           </div>
-          <div>
-            <h2 className="mb-2 text-xl font-bold text-orange-800">{dict.home.whyTitle}</h2>
-            <p className="leading-relaxed text-neutral-700">{dict.home.whyText1}</p>
-          </div>
-          <div>
-            <h2 className="mb-2 text-xl font-bold text-orange-800">{dict.home.joinTitle}</h2>
-            <p className="leading-relaxed text-neutral-700">{dict.home.whyText2}</p>
-          </div>
-        </div>
-      </section>
+        ))}
+      </div>
 
       <div>
         <h2 className="mb-4 text-xl font-semibold">{dict.home.coursesTitle}</h2>
