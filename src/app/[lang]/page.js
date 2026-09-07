@@ -1,6 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getDictionary } from "./dictionaries";
 import LogoIntro from "./LogoIntro";
+
+const locationImages = ["/loc-moelln.webp", "/loc-ratzeburg.webp", "/loc-schwarzenbeck.jpg"];
 
 export default async function HomePage({ params }) {
   const { lang } = await params;
@@ -14,12 +17,25 @@ export default async function HomePage({ params }) {
       <p className="leading-relaxed">{dict.home.about}</p>
 
       <div>
-        <h2 className="mb-2 text-xl font-semibold">{dict.home.coursesTitle}</h2>
-        <ul className="list-disc space-y-1 ps-6">
-          {dict.home.locations.map((loc) => (
-            <li key={loc}>{loc}</li>
+        <h2 className="mb-4 text-xl font-semibold">{dict.home.coursesTitle}</h2>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {dict.home.locations.map((loc, i) => (
+            <div
+              key={loc}
+              className="group relative aspect-[4/3] overflow-hidden rounded-xl shadow-sm"
+            >
+              <Image
+                src={locationImages[i]}
+                alt={loc}
+                fill
+                sizes="(min-width: 640px) 33vw, 100vw"
+                className="object-cover transition duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+              <p className="absolute inset-x-0 bottom-0 p-3 font-semibold text-white">{loc}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
 
       <Link
