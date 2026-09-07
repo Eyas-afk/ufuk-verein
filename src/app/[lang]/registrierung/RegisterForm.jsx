@@ -16,6 +16,10 @@ const initialState = {
   school: "",
   speaksArabic: false,
   consent: false,
+  consentPhotosAdmin: false,
+  consentPhotosPublic: false,
+  consentContactList: false,
+  consentDataSharingTeachers: false,
 };
 
 const inputClass =
@@ -57,6 +61,10 @@ export default function RegisterForm({ dict, lang }) {
       school: form.school,
       speaks_arabic: form.speaksArabic,
       consent: form.consent,
+      consent_photos_admin: form.consentPhotosAdmin,
+      consent_photos_public: form.consentPhotosPublic,
+      consent_contact_list: form.consentContactList,
+      consent_data_sharing_teachers: form.consentDataSharingTeachers,
       locale: lang,
     });
 
@@ -208,6 +216,52 @@ export default function RegisterForm({ dict, lang }) {
           {dict.consentPost}
         </span>
       </label>
+
+      <div className="space-y-3 rounded-lg border border-neutral-200 p-4">
+        <p className="text-sm font-medium text-neutral-700">
+          {dict.additionalConsentsTitle}
+        </p>
+
+        <label className="flex items-start gap-2">
+          <input
+            type="checkbox"
+            checked={form.consentPhotosAdmin}
+            onChange={(e) => update("consentPhotosAdmin", e.target.checked)}
+            className="mt-1"
+          />
+          <span className="text-sm">{dict.consentPhotosAdmin}</span>
+        </label>
+
+        <label className="flex items-start gap-2">
+          <input
+            type="checkbox"
+            checked={form.consentPhotosPublic}
+            onChange={(e) => update("consentPhotosPublic", e.target.checked)}
+            className="mt-1"
+          />
+          <span className="text-sm">{dict.consentPhotosPublic}</span>
+        </label>
+
+        <label className="flex items-start gap-2">
+          <input
+            type="checkbox"
+            checked={form.consentContactList}
+            onChange={(e) => update("consentContactList", e.target.checked)}
+            className="mt-1"
+          />
+          <span className="text-sm">{dict.consentContactList}</span>
+        </label>
+
+        <label className="flex items-start gap-2">
+          <input
+            type="checkbox"
+            checked={form.consentDataSharingTeachers}
+            onChange={(e) => update("consentDataSharingTeachers", e.target.checked)}
+            className="mt-1"
+          />
+          <span className="text-sm">{dict.consentDataSharingTeachers}</span>
+        </label>
+      </div>
 
       {error && (
         <p className="rounded-lg bg-red-50 p-4 text-red-800">
