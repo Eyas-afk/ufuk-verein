@@ -39,13 +39,21 @@ export default async function HomePage({ params }) {
     <div className="mx-auto max-w-3xl space-y-8 px-4 py-12">
       <LogoIntro />
       <h1 className="sr-only">Ufuk e.V.</h1>
-      <div
-        className={`${storyFont} space-y-4 text-xl leading-relaxed text-neutral-900 sm:text-2xl`}
-      >
-        <p>{dict.home.nameStory1}</p>
-        <p>{dict.home.nameStory2}</p>
-        <p>{dict.home.nameStory3}</p>
-        <p>{dict.home.nameStory4}</p>
+      <div className="relative overflow-hidden rounded-2xl border-s-4 border-orange-400 bg-gradient-to-br from-orange-50 to-white p-8 shadow-md sm:p-10">
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-6 start-4 select-none font-serif text-[8rem] leading-none text-orange-200/60"
+        >
+          &quot;
+        </span>
+        <div
+          className={`${storyFont} relative space-y-4 text-xl leading-relaxed text-neutral-900 sm:text-2xl`}
+        >
+          <p>{dict.home.nameStory1}</p>
+          <p>{dict.home.nameStory2}</p>
+          <p>{dict.home.nameStory3}</p>
+          <p>{dict.home.nameStory4}</p>
+        </div>
       </div>
 
       <div className="space-y-6">
