@@ -5,6 +5,7 @@ import "../globals.css";
 import { getDictionary, hasLocale, locales } from "./dictionaries";
 import Header from "./Header";
 import CalligraphyBackground from "../CalligraphyBackground";
+import WhatsAppButton from "../WhatsAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -73,6 +74,7 @@ export default async function RootLayout({ children, params }) {
             </Link>
           </div>
         </footer>
+        <WhatsAppButton label={dict.footer.whatsapp} />
       </body>
     </html>
   );

@@ -40,21 +40,23 @@ export default async function HomePage({ params }) {
         {storySections.map((s, i) => (
           <div
             key={s.key}
-            className={`flex flex-col gap-6 rounded-2xl bg-white p-5 shadow-lg sm:items-center sm:p-6 ${
+            className={`group flex flex-col gap-6 rounded-2xl bg-white p-5 shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl sm:items-center sm:p-6 ${
               i % 2 === 0 ? "sm:flex-row-reverse" : "sm:flex-row"
             }`}
           >
-            <div className="relative aspect-[4/3] w-full sm:w-72 sm:shrink-0">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-md sm:w-72 sm:shrink-0">
               <Image
                 src={s.image}
                 alt=""
                 fill
                 sizes="(min-width: 640px) 288px, 100vw"
-                className="rounded-2xl object-cover shadow-md"
+                className="object-cover transition duration-300 group-hover:scale-110"
               />
             </div>
             <div>
-              <h2 className="mb-2 text-2xl font-bold text-orange-800">{s.title}</h2>
+              <h2 className="mb-2 text-2xl font-bold text-orange-800 transition-colors duration-300 group-hover:text-orange-600">
+                {s.title}
+              </h2>
               <p className="text-lg leading-relaxed text-neutral-700">{s.text}</p>
             </div>
           </div>

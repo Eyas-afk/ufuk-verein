@@ -8,10 +8,6 @@ export default async function DatenschutzPage({ params }) {
     <div className="mx-auto max-w-2xl space-y-6 px-4 py-12">
       <h1 className="text-2xl font-bold">{dict.title}</h1>
 
-      <p className="rounded-lg border border-amber-400 bg-amber-50 p-4 text-sm text-amber-900">
-        {dict.draftNotice}
-      </p>
-
       <p>{dict.intro}</p>
 
       <section className="space-y-1">
@@ -32,6 +28,21 @@ export default async function DatenschutzPage({ params }) {
       <section className="space-y-1">
         <h2 className="font-semibold">{dict.legalBasisTitle}</h2>
         <p>{dict.legalBasisText}</p>
+      </section>
+
+      <section className="space-y-1">
+        <h2 className="font-semibold">{dict.consentPhotosTitle}</h2>
+        <p>{dict.consentPhotosText}</p>
+      </section>
+
+      <section className="space-y-1">
+        <h2 className="font-semibold">{dict.recipientsTitle}</h2>
+        <p>{dict.recipientsText}</p>
+      </section>
+
+      <section className="space-y-1">
+        <h2 className="font-semibold">{dict.cookiesTitle}</h2>
+        <p>{dict.cookiesText}</p>
       </section>
 
       <section className="space-y-1">

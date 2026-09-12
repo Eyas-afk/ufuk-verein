@@ -8,10 +8,6 @@ export default async function ImpressumPage({ params }) {
     <div className="mx-auto max-w-2xl space-y-6 px-4 py-12">
       <h1 className="text-2xl font-bold">{dict.title}</h1>
 
-      <p className="rounded-lg border border-amber-400 bg-amber-50 p-4 text-sm text-amber-900">
-        {dict.draftNotice}
-      </p>
-
       <section className="space-y-1">
         <h2 className="font-semibold">{dict.sectionAngaben}</h2>
         <p className="whitespace-pre-line">{dict.vereinName}</p>

@@ -181,14 +181,16 @@ export default function RegisterForm({ dict, lang }) {
         />
       </Field>
 
-      <label className="flex items-center gap-2">
-        <input
-          type="checkbox"
-          checked={form.speaksArabic}
-          onChange={(e) => update("speaksArabic", e.target.checked)}
-        />
-        {dict.speaksArabic}
-      </label>
+      <Field label={dict.speaksArabic}>
+        <select
+          value={form.speaksArabic ? "yes" : "no"}
+          onChange={(e) => update("speaksArabic", e.target.value === "yes")}
+          className={inputClass}
+        >
+          <option value="no">{dict.speaksArabicNo}</option>
+          <option value="yes">{dict.speaksArabicYes}</option>
+        </select>
+      </Field>
 
       <label className="flex items-start gap-2">
         <input
