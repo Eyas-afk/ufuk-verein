@@ -124,17 +124,13 @@
     "vereinsordnung": {
       "title": "Vereinsordnung",
       "draftNotice": "Diese Seite fasst die interne Vereinsordnung von Ufuk e.V. zusammen. Mit Abschluss der Registrierung erklären Sie sich mit diesen Regelungen einverstanden.",
-      "feesTitle": "1. Monatliche Teilnahmegebühr",
-      "feesText": "15 € für das erste Kind, jeweils 10 € für jedes weitere Kind (2. bis 5. Kind). Die Gebühren gelten ab Unterrichtsbeginn, bleiben konstant und werden ganzjährig erhoben, einschließlich der Ferienzeiten.",
-      "paymentTitle": "2. Zahlung",
-      "paymentText": "Der Beitrag wird zu Beginn jedes Monats per SEPA-Lastschrift vom Konto der Erziehungsberechtigten eingezogen. Barzahlung wird nur in Ausnahmefällen akzeptiert. Aktionskarten des Jobcenters werden anerkannt. Eine Abmeldung ist mit einer Frist von vier Wochen zum Monatsende schriftlich (E-Mail oder persönlich) mitzuteilen. Ufuk e.V. kann die Gebühren um bis zu 25 % anpassen, mit einer Ankündigung mindestens einen Monat im Voraus.",
-      "admissionTitle": "3. Anmeldung und Aufnahme",
+      "admissionTitle": "1. Anmeldung und Aufnahme",
       "admissionText": "Die Anmeldung ist ab einem Alter von fünf Jahren möglich (Ausnahmen bei freiem Platz). Geschwister bereits angemeldeter Kinder werden bei der Aufnahme bevorzugt. Ist kein Platz frei, erfolgt die Aufnahme über eine Warteliste. Die Einteilung erfolgt nach Sprachniveau und Alter. Erziehungsberechtigte sind für die Richtigkeit der Angaben verantwortlich und müssen Änderungen unverzüglich mitteilen.",
-      "attendanceTitle": "4. Anwesenheit",
+      "attendanceTitle": "2. Anwesenheit",
       "attendanceText": "Bei drei aufeinanderfolgenden unentschuldigten Fehltagen erfolgt eine Verwarnung, danach kann die Anmeldung beendet werden. Entschuldigungen müssen vor Unterrichtsbeginn bei der Lehrkraft, der Klassengruppe oder der Verwaltung eingehen.",
-      "conductTitle": "5. Verhaltensregeln und Ausschlussgründe",
+      "conductTitle": "3. Verhaltensregeln und Ausschlussgründe",
       "conductText": "Ein Ausschluss ist möglich bei: respektlosem Verhalten gegenüber Lehrkräften oder anderen Kindern, unzureichender Unterstützung durch die Erziehungsberechtigten, wiederholtem unentschuldigtem Fehlen (mehr als drei Mal) oder Nichtzahlung des Beitrags. Verstöße werden in folgenden Stufen geahndet: mündliche Verwarnung, schriftliche Verwarnung, erste Abmahnung, zweite (endgültige) Abmahnung.",
-      "generalRulesTitle": "6. Allgemeine Regeln",
+      "generalRulesTitle": "4. Allgemeine Regeln",
       "generalRules": [
         "Pünktliche Teilnahme; Anwesenheit fünf Minuten vor Unterrichtsbeginn.",
         "Kommunikation mit Lehrkräften nur nach dem Unterricht; dringende Anliegen an die Verwaltung per WhatsApp oder Telefon.",
@@ -143,15 +139,15 @@
         "Fotos/Videos von Kindern nur mit schriftlicher Zustimmung der Eltern; keine Veröffentlichung in privaten Social-Media-Konten.",
         "Handys sind für Kinder auf dem Vereinsgelände nicht gestattet."
       ],
-      "suppliesTitle": "7. Was mitgebracht werden sollte",
+      "suppliesTitle": "5. Was mitgebracht werden sollte",
       "suppliesText": "Schultasche mit Stiften, Heften und Material, ein kleiner Snack sowie eine Trinkflasche. Das Kind sollte selbstständig zur Toilette gehen können. Bitte alle persönlichen Gegenstände mit dem Namen des Kindes beschriften.",
-      "communicationTitle": "8. Kommunikation zwischen Lehrkräften und Eltern",
+      "communicationTitle": "6. Kommunikation zwischen Lehrkräften und Eltern",
       "communicationText": "Jede Klasse erhält eine eigene WhatsApp-Gruppe ausschließlich für Bildungszwecke. Es dürfen keine themenfremden Inhalte geteilt oder Nachrichten nach außen weitergeleitet werden. Telefonnummern bleiben innerhalb der Gruppe vertraulich. Der Leistungsstand einzelner Kinder wird dort nicht besprochen.",
-      "offerTitle": "9. Was der Verein leistet",
+      "offerTitle": "7. Was der Verein leistet",
       "offerText": "Ufuk e.V. bietet den Bildungsweg und grundlegende Unterstützung im Rahmen der verfügbaren Unterrichtszeit. Die fortlaufende Begleitung, Übung und Förderung des Kindes liegt in der Verantwortung der Erziehungsberechtigten.",
-      "changesTitle": "10. Änderungen dieser Ordnung",
+      "changesTitle": "8. Änderungen dieser Ordnung",
       "changesText": "Ufuk e.V. kann diese Vereinsordnung bei Bedarf anpassen. Änderungen werden per E-Mail und WhatsApp mitgeteilt. Erfolgt innerhalb von zwei Wochen keine Rückmeldung, gilt dies als Zustimmung.",
-      "contactTitle": "11. Kontakt",
+      "contactTitle": "9. Kontakt",
       "contactText": "Mobil/WhatsApp: 015788316451 · E-Mail: ufukkulturverein@gmail.com"
     }
   }

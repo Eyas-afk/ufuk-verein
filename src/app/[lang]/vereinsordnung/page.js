@@ -13,16 +13,6 @@ export default async function VereinsordnungPage({ params }) {
       </p>
 
       <section className="space-y-1">
-        <h2 className="font-semibold">{dict.feesTitle}</h2>
-        <p>{dict.feesText}</p>
-      </section>
-
-      <section className="space-y-1">
-        <h2 className="font-semibold">{dict.paymentTitle}</h2>
-        <p>{dict.paymentText}</p>
-      </section>
-
-      <section className="space-y-1">
         <h2 className="font-semibold">{dict.admissionTitle}</h2>
         <p>{dict.admissionText}</p>
       </section>

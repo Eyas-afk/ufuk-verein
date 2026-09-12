@@ -75,7 +75,7 @@ export async function setRegistrationStatus(id, status) {
 
   const { data: registration } = await supabase
     .from("registrations")
-    .select("child_name, email, locale")
+    .select("child_name, email")
     .eq("id", id)
     .single();
 
@@ -85,7 +85,6 @@ export async function setRegistrationStatus(id, status) {
     try {
       await sendRegistrationApprovedEmail({
         to: registration.email,
-        locale: registration.locale,
         childName: registration.child_name,
       });
     } catch (err) {
@@ -130,7 +129,6 @@ export async function setTeacherApplicationStatus(id, status) {
 
       await sendTeacherInviteEmail({
         to: application.email,
-        locale: application.locale,
         link: linkData.properties.action_link,
       });
     } catch (err) {
@@ -191,14 +189,13 @@ export async function saveGroup(id, notify, formData) {
 
     const { data: students } = await supabase
       .from("registrations")
-      .select("child_name, email, locale")
+      .select("child_name, email")
       .eq("group_id", id);
 
     for (const student of students ?? []) {
       try {
         await sendGroupAssignedParentEmail({
           to: student.email,
-          locale: student.locale,
           childName: student.child_name,
           groupName: group.name,
           weekday: group.weekday,
@@ -211,12 +208,6 @@ export async function saveGroup(id, notify, formData) {
     }
 
     if (group.teacher_id) {
-      const { data: teacherProfile } = await supabase
-        .from("profiles")
-        .select("locale")
-        .eq("id", group.teacher_id)
-        .single();
-
       const { data: adminAuth } = await createAdminClient().auth.admin.getUserById(
         group.teacher_id
       );
@@ -225,7 +216,6 @@ export async function saveGroup(id, notify, formData) {
         try {
           await sendGroupAssignedTeacherEmail({
             to: adminAuth.user.email,
-            locale: teacherProfile?.locale,
             groupName: group.name,
             weekday: group.weekday,
             startTime: group.start_time,
