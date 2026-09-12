@@ -52,7 +52,7 @@ export default async function HomePage({ params }) {
         {storySections.map((s, i) => (
           <div
             key={s.key}
-            className={`group flex flex-col gap-6 rounded-2xl bg-white p-5 shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl sm:items-center sm:p-6 ${
+            className={`group flex flex-col gap-6 rounded-2xl bg-transparent p-5 shadow-lg transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-2xl sm:items-center sm:p-6 ${
               i % 2 === 0 ? "sm:flex-row-reverse" : "sm:flex-row"
             }`}
           >
