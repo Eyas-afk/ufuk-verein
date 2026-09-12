@@ -39,15 +39,17 @@ export default async function HomePage({ params }) {
     <div className="mx-auto max-w-3xl space-y-8 px-4 py-12">
       <LogoIntro />
       <h1 className="sr-only">Ufuk e.V.</h1>
-      <div className="relative overflow-hidden rounded-2xl border-s-4 border-orange-400 bg-gradient-to-br from-orange-50 to-white p-8 shadow-md sm:p-10">
-        <span
+      <div className="relative rounded-2xl border-s-4 border-orange-400 bg-gradient-to-br from-orange-50 to-white p-8 shadow-md sm:p-10">
+        <svg
           aria-hidden="true"
-          className="pointer-events-none absolute -top-6 start-4 select-none font-serif text-[8rem] leading-none text-orange-200/60"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="pointer-events-none absolute top-4 start-4 h-14 w-14 text-orange-300/80 sm:h-20 sm:w-20"
         >
-          &quot;
-        </span>
+          <path d="M7.17 6C4.87 8.42 3 11.4 3 14.8c0 3.3 2.1 5.7 4.8 5.7 2.5 0 4.4-1.9 4.4-4.4 0-2.4-1.7-4.2-4-4.2-.4 0-.8.1-1.1.2.3-2 1.7-4.1 3.4-5.6L7.17 6zm10 0c-2.3 2.42-4.17 5.4-4.17 8.8 0 3.3 2.1 5.7 4.8 5.7 2.5 0 4.4-1.9 4.4-4.4 0-2.4-1.7-4.2-4-4.2-.4 0-.8.1-1.1.2.3-2 1.7-4.1 3.4-5.6L17.17 6z" />
+        </svg>
         <div
-          className={`${storyFont} relative space-y-4 text-xl leading-relaxed text-neutral-900 sm:text-2xl`}
+          className={`${storyFont} relative mt-10 space-y-4 text-xl leading-relaxed text-neutral-900 sm:mt-14 sm:text-2xl`}
         >
           <p>{dict.home.nameStory1}</p>
           <p>{dict.home.nameStory2}</p>
