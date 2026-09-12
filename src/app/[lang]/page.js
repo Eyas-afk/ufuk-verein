@@ -1,13 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Amiri, Playfair_Display } from "next/font/google";
 import { getDictionary } from "./dictionaries";
 import LogoIntro from "./LogoIntro";
 
 const locationImages = ["/loc-moelln.webp", "/loc-ratzeburg.webp", "/loc-schwarzenbeck.jpg"];
 
+const amiri = Amiri({ subsets: ["arabic"], weight: ["400", "700"] });
+const playfair = Playfair_Display({ subsets: ["latin"], weight: ["400", "600"], style: ["italic", "normal"] });
+
 export default async function HomePage({ params }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const storyFont = lang === "ar" ? amiri.className : playfair.className;
 
   const storySections = [
     {
@@ -33,8 +38,15 @@ export default async function HomePage({ params }) {
   return (
     <div className="mx-auto max-w-3xl space-y-8 px-4 py-12">
       <LogoIntro />
-      <h1 className="text-center text-3xl font-bold sm:text-start">{dict.home.title}</h1>
-      <p className="text-lg text-neutral-600">{dict.home.subtitle}</p>
+      <h1 className="sr-only">Ufuk e.V.</h1>
+      <div
+        className={`${storyFont} space-y-4 text-center text-xl leading-relaxed text-orange-900 sm:text-2xl`}
+      >
+        <p>{dict.home.nameStory1}</p>
+        <p>{dict.home.nameStory2}</p>
+        <p>{dict.home.nameStory3}</p>
+        <p>{dict.home.nameStory4}</p>
+      </div>
 
       <div className="space-y-6">
         {storySections.map((s, i) => (
