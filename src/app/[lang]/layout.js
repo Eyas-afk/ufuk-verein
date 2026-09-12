@@ -28,6 +28,9 @@ export async function generateMetadata({ params }) {
   return {
     title: dict.meta.title,
     description: dict.meta.description,
+    verification: {
+      google: "7L9ELtPr60mmm3EwZnqlr1wbHhCtACCwYTSad_QPmfc",
+    },
   };
 }
 
