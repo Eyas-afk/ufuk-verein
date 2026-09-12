@@ -40,7 +40,7 @@ export default async function HomePage({ params }) {
       <LogoIntro />
       <h1 className="sr-only">Ufuk e.V.</h1>
       <div
-        className={`${storyFont} space-y-4 text-center text-xl leading-relaxed text-orange-900 sm:text-2xl`}
+        className={`${storyFont} space-y-4 text-xl leading-relaxed text-neutral-900 sm:text-2xl`}
       >
         <p>{dict.home.nameStory1}</p>
         <p>{dict.home.nameStory2}</p>
