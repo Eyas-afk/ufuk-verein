@@ -101,6 +101,28 @@ export default async function HomePage({ params }) {
       </div>
 
       <div>
+        <h2 className="mb-4 text-xl font-semibold">{dict.home.eventsTitle}</h2>
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4">
+          {dict.home.events.map((event) => (
+            <div key={event.image} className="w-64 shrink-0 snap-center sm:w-72">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-md">
+                <Image
+                  src={event.image}
+                  alt={event.caption}
+                  fill
+                  sizes="288px"
+                  className="object-cover"
+                />
+              </div>
+              <p className="mt-2 text-center text-sm font-medium text-neutral-700">
+                {event.caption}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
         <h2 className="mb-4 text-xl font-semibold">{dict.home.coursesTitle}</h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {dict.home.locations.map((loc, i) => (
