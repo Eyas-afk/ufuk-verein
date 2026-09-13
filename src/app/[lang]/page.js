@@ -171,12 +171,14 @@ export default async function HomePage({ params }) {
         <p className="mt-4 text-center text-neutral-600">{dict.home.expansionNote}</p>
       </section>
 
-      <Link
-        href={`/${lang}/registrierung`}
-        className="inline-block rounded-lg bg-orange-600 px-6 py-3 font-semibold text-white hover:bg-orange-700"
-      >
-        {dict.home.cta}
-      </Link>
+      <div className="flex justify-center">
+        <Link
+          href={`/${lang}/registrierung`}
+          className="inline-block rounded-lg bg-orange-600 px-6 py-3 font-semibold text-white hover:bg-orange-700"
+        >
+          {dict.home.cta}
+        </Link>
+      </div>
     </div>
   );
 }
