@@ -61,11 +61,23 @@ export async function sendRegistrationApprovedEmail({ to, childName }) {
       `
         <p>مرحبًا،</p>
         <p>تم تأكيد تسجيل <strong>${childName}</strong> في دورة اللغة العربية لدى نادي أفق.</p>
+        <p>كما نرجو منكم تحويل الاشتراك الشهري: 15 يورو للطفل الأول، و10 يورو لكل طفل إضافي، بالإضافة إلى 20 يورو لمرة واحدة مقابل الكتاب الدراسي (في حال لم يكن لدى طفلكم كتاب بعد).</p>
+        <p>
+          رقم الحساب البنكي (IBAN): <strong>DE32 2305 2750 0082 1685 19</strong><br/>
+          رمز BIC: <strong>NOLADE21RZB</strong><br/>
+          الغرض من التحويل (Verwendungszweck): اسم الطفل والشهر الذي يخص عنه الاشتراك، مثال: Ahmad Ali – September
+        </p>
         <p>مع تحيات نادي أفق</p>
       `,
       `
         <p>Hallo,</p>
         <p>die Registrierung von <strong>${childName}</strong> für den Arabischkurs bei Ufuk e.V. wurde bestätigt.</p>
+        <p>Wir bitten Sie außerdem, den monatlichen Beitrag zu überweisen: 15 € für das erste Kind, 10 € für jedes weitere Kind, zuzüglich einmalig 20 € für das Lehrbuch (falls Ihr Kind noch kein Buch besitzt).</p>
+        <p>
+          IBAN: <strong>DE32 2305 2750 0082 1685 19</strong><br/>
+          BIC: <strong>NOLADE21RZB</strong><br/>
+          Verwendungszweck: Name des Kindes und der Monat, für den der Beitrag bestimmt ist, z. B.: Ahmad Ali – September
+        </p>
         <p>Viele Grüße<br/>Ufuk e.V.</p>
       `
     ),
