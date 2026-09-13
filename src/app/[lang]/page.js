@@ -18,7 +18,9 @@ export default async function HomePage({ params }) {
     {
       key: "about",
       title: dict.home.aboutTitle,
-      text: dict.home.about,
+      intro: dict.home.aboutIntro,
+      points: dict.home.aboutPoints,
+      outro: dict.home.aboutOutro,
       image: "/section-anbieten.jpeg",
     },
     {
@@ -78,7 +80,19 @@ export default async function HomePage({ params }) {
               <h2 className="mb-2 text-2xl font-bold text-orange-800 transition-colors duration-300 group-hover:text-orange-600">
                 {s.title}
               </h2>
-              <p className="text-lg leading-relaxed text-neutral-700">{s.text}</p>
+              {s.points ? (
+                <>
+                  <p className="text-lg leading-relaxed text-neutral-700">{s.intro}</p>
+                  <ul className="mt-2 list-disc space-y-1.5 ps-5 text-lg leading-relaxed text-neutral-700 marker:text-orange-500">
+                    {s.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                  <p className="mt-2 text-lg leading-relaxed text-neutral-700">{s.outro}</p>
+                </>
+              ) : (
+                <p className="text-lg leading-relaxed text-neutral-700">{s.text}</p>
+              )}
             </div>
           </div>
         ))}

@@ -15,7 +15,14 @@
     "nameStory3": "Am 06.08.2024 wurde unser Verein offiziell als gemeinnütziger Verein beim Amtsgericht Lübeck unter dem Namen „Ufuk – أُفُق“ eingetragen.",
     "nameStory4": "Ein Schritt, auf den wir stolz sind, und ein neuer Anfang für viele weitere Projekte und Erfolge.",
     "aboutTitle": "Was wir anbieten",
-    "about": "Ufuk e.V. bietet Kindern arabischer Herkunft Arabischunterricht in Wort und Schrift – sowohl für Kinder, die Arabisch bereits sprechen, aber nicht schreiben können, als auch für Kinder, die die Sprache noch gar nicht beherrschen. Die Kinder werden nach Alter und Vorwissen in Gruppen eingeteilt. Darüber hinaus schaffen wir für die Kinder ein reichhaltiges arabisches Kulturumfeld, indem wir vielfältige kulturelle und künstlerische Veranstaltungen und Aktivitäten anbieten – etwa Kino- und Theatervorführungen sowie Ausstellungen – und gemeinsam arabische Feste und besondere Anlässe feiern. Das stärkt die Verbindung der Kinder zu ihrer Kultur und Identität und bringt sie den Bräuchen und Traditionen ihres Herkunftslandes näher.",
+    "aboutIntro": "Ufuk e.V. bietet Kindern arabischer Herkunft ein vielfältiges Angebot:",
+    "aboutPoints": [
+      "Arabischunterricht in Wort und Schrift – für Kinder, die bereits sprechen, aber noch nicht schreiben können, ebenso wie für Kinder, die die Sprache noch gar nicht beherrschen",
+      "Einteilung in Gruppen nach Alter und Vorwissen",
+      "Kulturelle und künstlerische Veranstaltungen wie Kino- und Theatervorführungen sowie Ausstellungen",
+      "Gemeinsames Feiern arabischer Feste und besonderer Anlässe"
+    ],
+    "aboutOutro": "So stärken wir die Verbindung der Kinder zu ihrer Kultur und Identität und bringen sie den Bräuchen und Traditionen ihres Herkunftslandes näher.",
     "whyTitle": "Warum es Ufuk gibt",
     "whyText1": "Ufuk wurde gegründet, um Kindern arabischer Herkunft in Deutschland ihre Muttersprache in Wort und Schrift näherzubringen – denn je früher damit begonnen wird, desto leichter und nachhaltiger gelingt das Lernen. Aber nicht nur das: Auch Kinder und Jugendliche jeder anderen Herkunft, die Interesse an der arabischen Sprache haben, sind bei uns herzlich willkommen.",
     "joinTitle": "Werde Teil unseres Teams",
