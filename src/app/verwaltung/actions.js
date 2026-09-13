@@ -109,18 +109,32 @@ export async function setTeacherApplicationStatus(id, status) {
   if (status === "approved" && application) {
     try {
       const admin = createAdminClient();
+      const redirectTo = `${process.env.NEXT_PUBLIC_SITE_URL}/einladung?lang=${application.locale}`;
 
-      const { data: linkData, error: linkError } = await admin.auth.admin.generateLink({
+      let { data: linkData, error: linkError } = await admin.auth.admin.generateLink({
         type: "invite",
         email: application.email,
-        options: {
-          redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/einladung?lang=${application.locale}`,
-        },
+        options: { redirectTo },
       });
+
+      // E-Mail hat schon ein Konto (z. B. erneute Bewerbung oder Doppel-Bestätigung):
+      // "invite" schlägt dann fehl, weil Supabase keine Zweit-Einladung erlaubt.
+      // Stattdessen einen Passwort-Reset-Link für den bestehenden Nutzer erzeugen.
+      if (linkError?.code === "email_exists") {
+        const { data: userList } = await admin.auth.admin.listUsers();
+        const existingUser = userList?.users.find((u) => u.email === application.email);
+        if (!existingUser) throw linkError;
+
+        ({ data: linkData, error: linkError } = await admin.auth.admin.generateLink({
+          type: "recovery",
+          email: application.email,
+          options: { redirectTo },
+        }));
+      }
 
       if (linkError) throw linkError;
 
-      await admin.from("profiles").insert({
+      await admin.from("profiles").upsert({
         id: linkData.user.id,
         full_name: application.full_name,
         role: "lehrer",
