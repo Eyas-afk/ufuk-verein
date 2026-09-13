@@ -82,8 +82,10 @@ export default async function HomePage({ params }) {
               </h2>
               {s.points ? (
                 <>
-                  <p className="text-lg leading-relaxed text-neutral-700">{s.intro}</p>
-                  <ul className="mt-2 list-disc space-y-1.5 ps-5 text-lg leading-relaxed text-neutral-700 marker:text-orange-500">
+                  {s.intro && (
+                    <p className="mb-2 text-lg leading-relaxed text-neutral-700">{s.intro}</p>
+                  )}
+                  <ul className="list-disc space-y-1.5 ps-5 text-lg leading-relaxed text-neutral-700 marker:text-orange-500">
                     {s.points.map((point) => (
                       <li key={point}>{point}</li>
                     ))}
