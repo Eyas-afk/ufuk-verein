@@ -3,8 +3,10 @@ import LogoBackgroundSlideshow from "./LogoBackgroundSlideshow";
 
 export default function LogoIntro() {
   return (
-    <div className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-2xl py-10 sm:min-h-[360px]">
-      <LogoBackgroundSlideshow />
+    <div className="relative flex min-h-[280px] items-center justify-center py-10 sm:min-h-[360px]">
+      <div className="absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 overflow-hidden">
+        <LogoBackgroundSlideshow />
+      </div>
       <Image
         src="/logo-home.jpeg"
         alt="Ufuk e.V."
