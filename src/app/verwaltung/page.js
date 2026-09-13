@@ -5,6 +5,7 @@ import AccessDenied from "./AccessDenied";
 import VerwaltungHeader from "./VerwaltungHeader";
 import SubmitButton from "./SubmitButton";
 import { weekdayLabels } from "@/lib/weekdays";
+import { locationLabels } from "@/lib/locations";
 import { getAdminDict } from "@/lib/adminDictionary";
 import { setRegistrationStatus, setTeacherApplicationStatus } from "./actions";
 
@@ -120,7 +121,7 @@ export default async function VerwaltungPage() {
                   <p>{t.parents}: {r.father_name} / {r.mother_name}</p>
                   <p>{t.contact}: {r.phone} · {r.email}</p>
                   <p>{t.address}: {r.address}</p>
-                  <p>{t.location}: {r.location} · {t.school}: {r.school}</p>
+                  <p>{t.location}: {locationLabels[r.location]?.[locale] ?? r.location} · {t.school}: {r.school}</p>
                   <p>{t.speaksArabic}: {r.speaks_arabic ? t.yes : t.no}</p>
                 </div>
                 {r.consent_photos_public && (
@@ -166,7 +167,7 @@ export default async function VerwaltungPage() {
                 <p className="font-semibold text-neutral-900">{app.full_name}</p>
                 <div className="mt-2 space-y-0.5 text-sm text-neutral-600">
                   <p>{t.contact}: {app.phone} · {app.email}</p>
-                  <p>{t.location}: {app.location}</p>
+                  <p>{t.location}: {locationLabels[app.location]?.[locale] ?? app.location}</p>
                   <p>{t.qualification}: {app.qualification}</p>
                   {app.message && <p>{t.message}: {app.message}</p>}
                 </div>
