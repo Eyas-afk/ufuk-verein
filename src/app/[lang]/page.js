@@ -104,6 +104,7 @@ export default async function HomePage({ params }) {
             </div>
           ))}
         </div>
+        <p className="mt-4 text-neutral-600">{dict.home.expansionNote}</p>
       </div>
 
       <Link
