@@ -26,3 +26,16 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.15);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburns 6s ease-out forwards;
+}
