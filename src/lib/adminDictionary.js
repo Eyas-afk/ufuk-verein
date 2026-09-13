@@ -106,7 +106,9 @@ export const adminDictionary = {
     },
     resetPassword: {
       title: "Neues Passwort festlegen",
-      checking: "Link wird geprüft …",
+      confirmIntro: "Klicke unten, um fortzufahren.",
+      confirmButton: "Bestätigen",
+      verifying: "Wird geprüft …",
       error: "Der Link ist ungültig oder abgelaufen. Bitte fordere über \"Passwort vergessen?\" einen neuen an.",
       success: "Dein Passwort wurde geändert. Du kannst dich jetzt einloggen.",
       toLogin: "Zum Login",
@@ -225,7 +227,9 @@ export const adminDictionary = {
     },
     resetPassword: {
       title: "تعيين كلمة مرور جديدة",
-      checking: "جارٍ التحقق من الرابط …",
+      confirmIntro: "اضغط أدناه للمتابعة.",
+      confirmButton: "تأكيد",
+      verifying: "جارٍ التحقق …",
       error: "الرابط غير صالح أو منتهي الصلاحية. يرجى طلب رابط جديد عبر \"نسيت كلمة المرور؟\".",
       success: "تم تغيير كلمة المرور. يمكنك الآن تسجيل الدخول.",
       toLogin: "تسجيل الدخول",

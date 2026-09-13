@@ -40,8 +40,11 @@ export async function requestPasswordReset(locale, formData) {
       },
     });
 
-    if (!error && linkData?.properties?.action_link) {
-      await sendPasswordResetEmail({ to: email, link: linkData.properties.action_link });
+    // Eigenen Link statt Supabases action_link verwenden (siehe Kommentar bei
+    // setTeacherApplicationStatus) – verifyOtp läuft erst bei Klick auf "Bestätigen".
+    if (!error && linkData?.properties?.hashed_token) {
+      const link = `${process.env.NEXT_PUBLIC_SITE_URL}/passwort-zuruecksetzen?token_hash=${linkData.properties.hashed_token}&type=recovery&lang=${locale}`;
+      await sendPasswordResetEmail({ to: email, link });
     }
   } catch (err) {
     // Absichtlich nicht an die Oberfläche weiterreichen: würde es hier einen Fehler
@@ -111,8 +114,9 @@ export async function setTeacherApplicationStatus(id, status) {
       const admin = createAdminClient();
       const redirectTo = `${process.env.NEXT_PUBLIC_SITE_URL}/einladung?lang=${application.locale}`;
 
+      let linkType = "invite";
       let { data: linkData, error: linkError } = await admin.auth.admin.generateLink({
-        type: "invite",
+        type: linkType,
         email: application.email,
         options: { redirectTo },
       });
@@ -125,8 +129,9 @@ export async function setTeacherApplicationStatus(id, status) {
         const existingUser = userList?.users.find((u) => u.email === application.email);
         if (!existingUser) throw linkError;
 
+        linkType = "recovery";
         ({ data: linkData, error: linkError } = await admin.auth.admin.generateLink({
-          type: "recovery",
+          type: linkType,
           email: application.email,
           options: { redirectTo },
         }));
@@ -141,9 +146,18 @@ export async function setTeacherApplicationStatus(id, status) {
         locale: application.locale,
       });
 
+      // Eigenen Link statt Supabases action_link verwenden: action_link führt über
+      // Supabases eigenen Server-Redirect, der (a) eine exakt passende Redirect-URL
+      // in den Supabase-Projekteinstellungen voraussetzt und (b) sofort beim Öffnen
+      // verifiziert – E-Mail-Sicherheitsscanner, die Links vorab abrufen, verbrauchen
+      // das Einmal-Token dadurch oft schon vor dem echten Klick der Nutzerin/des
+      // Nutzers. Mit token_hash verifizieren wir stattdessen selbst, erst wenn die
+      // Person aktiv auf "Bestätigen" klickt (siehe /einladung).
+      const link = `${process.env.NEXT_PUBLIC_SITE_URL}/einladung?token_hash=${linkData.properties.hashed_token}&type=${linkType}&lang=${application.locale}`;
+
       await sendTeacherInviteEmail({
         to: application.email,
-        link: linkData.properties.action_link,
+        link,
       });
     } catch (err) {
       console.error("Einladung an Lehrer konnte nicht erstellt/gesendet werden:", err);
