@@ -101,13 +101,55 @@ export default async function HomePage({ params }) {
         ))}
       </div>
 
-      <div>
-        <h2 className="mb-4 text-xl font-semibold">{dict.home.eventsTitle}</h2>
+      <section className="rounded-3xl bg-gradient-to-b from-orange-100/70 via-orange-50 to-transparent p-6 sm:p-10">
+        <div className="mb-6 flex flex-col items-center gap-2 text-center">
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            className="h-9 w-9 text-orange-500"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C3.05 7.58 2.25 8.507 2.25 9.574v9.176c0 1.24 1.01 2.25 2.25 2.25h15c1.24 0 2.25-1.01 2.25-2.25V9.574c0-1.067-.8-1.994-1.802-2.169a47.99 47.99 0 0 0-1.133-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
+            />
+          </svg>
+          <h2 className="text-2xl font-bold text-orange-800">{dict.home.eventsTitle}</h2>
+        </div>
         <EventsCarousel events={dict.home.events} />
-      </div>
+      </section>
 
-      <div>
-        <h2 className="mb-4 text-xl font-semibold">{dict.home.coursesTitle}</h2>
+      <section className="rounded-3xl bg-gradient-to-b from-orange-100/70 via-orange-50 to-transparent p-6 sm:p-10">
+        <div className="mb-6 flex flex-col items-center gap-2 text-center">
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            className="h-9 w-9 text-orange-500"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+            />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+            />
+          </svg>
+          <h2 className="text-2xl font-bold text-orange-800">{dict.home.coursesTitle}</h2>
+        </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {dict.home.locations.map((loc, i) => (
             <div
@@ -126,8 +168,8 @@ export default async function HomePage({ params }) {
             </div>
           ))}
         </div>
-        <p className="mt-4 text-neutral-600">{dict.home.expansionNote}</p>
-      </div>
+        <p className="mt-4 text-center text-neutral-600">{dict.home.expansionNote}</p>
+      </section>
 
       <Link
         href={`/${lang}/registrierung`}

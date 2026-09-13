@@ -29,12 +29,12 @@
     "whyText2": "Unser Verein lebt vom Engagement freiwilliger Lehrkräfte. Wer Arabisch in Wort und Schrift beherrscht und etwas Gutes für die Gesellschaft bewirken möchte, ist bei uns genau richtig – gute Deutschkenntnisse sind dabei von Vorteil.",
     "eventsTitle": "Unsere Veranstaltungen",
     "events": [
-      { "image": "/veranstaltungen/exhibitions.jpeg", "caption": "المشاركة في المعارض" },
-      { "image": "/veranstaltungen/cinema-club.jpeg", "caption": "النادي السنمائي" },
-      { "image": "/veranstaltungen/trips.jpeg", "caption": "رحلات ترفيهية" },
-      { "image": "/veranstaltungen/eid-events.jpeg", "caption": "فعاليات عيد الفطر و الأضحى" },
-      { "image": "/veranstaltungen/competitions.jpeg", "caption": "مسابقات و جوائز" },
-      { "image": "/veranstaltungen/book-fair.jpeg", "caption": "معرض الكتاب" }
+      { "image": "/veranstaltungen/exhibitions.jpeg", "caption": "Teilnahme an Ausstellungen" },
+      { "image": "/veranstaltungen/cinema-club.jpeg", "caption": "Kinoclub" },
+      { "image": "/veranstaltungen/trips.jpeg", "caption": "Freizeitausflüge" },
+      { "image": "/veranstaltungen/eid-events.jpeg", "caption": "Feierlichkeiten zum Ramadan- und Opferfest" },
+      { "image": "/veranstaltungen/competitions.jpeg", "caption": "Wettbewerbe und Preise" },
+      { "image": "/veranstaltungen/book-fair.jpeg", "caption": "Buchmesse" }
     ],
     "coursesTitle": "Aktuell verfügbare Unterrichtsorte",
     "expansionNote": "Der Verein ist offen dafür, weitere Kurse in anderen Städten anzubieten, sofern genügend Interessierte und Lehrkräfte zur Verfügung stehen. Wenn Sie dazu Informationen haben, zögern Sie nicht, uns zu kontaktieren.",
