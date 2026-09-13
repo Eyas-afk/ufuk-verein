@@ -92,7 +92,8 @@
     "submit": "Bewerbung absenden",
     "submitting": "Wird gesendet …",
     "successPlaceholder": "Vielen Dank! Deine Bewerbung wurde erfolgreich übermittelt.",
-    "errorPlaceholder": "Beim Speichern ist ein Fehler aufgetreten. Bitte versuche es später erneut."
+    "errorPlaceholder": "Beim Speichern ist ein Fehler aufgetreten. Bitte versuche es später erneut.",
+    "emailExistsError": "Diese E-Mail-Adresse ist bereits als Lehrkraft registriert. Bitte wende dich bei Fragen direkt an die Vereinsverwaltung."
   },
   "footer": {
     "text": "© Ufuk e.V. – Mölln, Ratzeburg, Schwarzenbeck",

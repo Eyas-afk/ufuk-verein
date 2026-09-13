@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
+import { checkEmailHasAccount } from "./actions";
 
 const initialState = {
   fullName: "",
@@ -31,6 +32,7 @@ export default function TeacherForm({ dict, lang }) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
+  const [emailExists, setEmailExists] = useState(false);
 
   function update(field, value) {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -40,6 +42,14 @@ export default function TeacherForm({ dict, lang }) {
     e.preventDefault();
     setSubmitting(true);
     setError(false);
+    setEmailExists(false);
+
+    const alreadyHasAccount = await checkEmailHasAccount(form.email);
+    if (alreadyHasAccount) {
+      setSubmitting(false);
+      setEmailExists(true);
+      return;
+    }
 
     const { error: dbError } = await supabase.from("teacher_applications").insert({
       full_name: form.fullName,
@@ -159,6 +169,12 @@ export default function TeacherForm({ dict, lang }) {
           {dict.consentPost}
         </span>
       </label>
+
+      {emailExists && (
+        <p className="rounded-lg bg-red-50 p-4 text-red-800">
+          {dict.emailExistsError}
+        </p>
+      )}
 
       {error && (
         <p className="rounded-lg bg-red-50 p-4 text-red-800">
