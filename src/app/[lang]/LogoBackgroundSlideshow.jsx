@@ -7,7 +7,6 @@ const images = [
   "/hinterlogo/bg-1.jpeg",
   "/hinterlogo/bg-2.jpeg",
   "/hinterlogo/bg-3.jpeg",
-  "/hinterlogo/bg-4.jpeg",
   "/hinterlogo/bg-5.jpeg",
   "/hinterlogo/bg-6.jpeg",
 ];
