@@ -6,6 +6,7 @@ import Image from "next/image";
 export default function EventsCarousel({ events }) {
   const containerRef = useRef(null);
   const itemRefs = useRef([]);
+  const pausedRef = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -39,9 +40,24 @@ export default function EventsCarousel({ events }) {
       }
     }
 
+    function pause() {
+      pausedRef.current = true;
+    }
+    function resume() {
+      pausedRef.current = false;
+    }
+
     updateActiveIndex();
     container.addEventListener("scroll", onScroll, { passive: true });
-    return () => container.removeEventListener("scroll", onScroll);
+    container.addEventListener("pointerdown", pause);
+    container.addEventListener("pointerup", resume);
+    container.addEventListener("pointercancel", resume);
+    return () => {
+      container.removeEventListener("scroll", onScroll);
+      container.removeEventListener("pointerdown", pause);
+      container.removeEventListener("pointerup", resume);
+      container.removeEventListener("pointercancel", resume);
+    };
   }, []);
 
   function scrollToIndex(index) {
@@ -53,6 +69,14 @@ export default function EventsCarousel({ events }) {
       behavior: "smooth",
     });
   }
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (pausedRef.current) return;
+      scrollToIndex((activeIndex + 1) % events.length);
+    }, 4000);
+    return () => clearInterval(id);
+  }, [activeIndex, events.length]);
 
   return (
     <div>
