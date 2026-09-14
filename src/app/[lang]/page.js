@@ -1,19 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Amiri, Playfair_Display } from "next/font/google";
 import { getDictionary } from "./dictionaries";
 import LogoIntro from "./LogoIntro";
 import EventsCarousel from "./EventsCarousel";
 
 const locationImages = ["/loc-moelln.webp", "/loc-ratzeburg.webp", "/loc-schwarzenbeck.jpg"];
 
-const amiri = Amiri({ subsets: ["arabic"], weight: ["400", "700"] });
-const playfair = Playfair_Display({ subsets: ["latin"], weight: ["400", "600"], style: ["italic", "normal"] });
-
 export default async function HomePage({ params }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
-  const storyFont = lang === "ar" ? amiri.className : playfair.className;
 
   const storySections = [
     {
@@ -42,21 +37,12 @@ export default async function HomePage({ params }) {
     <div className="mx-auto max-w-3xl space-y-8 px-4 py-12">
       <LogoIntro />
       <h1 className="sr-only">Ufuk e.V.</h1>
-      <div className="flex overflow-hidden rounded-2xl shadow-md">
-        <div
-          aria-hidden="true"
-          className="w-4 shrink-0 bg-cover bg-center sm:w-6"
-          style={{ backgroundImage: "url(/pattern-arabic-letters.webp)" }}
-        />
-        <div className="flex-1 bg-gradient-to-br from-orange-50 to-white p-8 sm:p-10">
-          <div
-            className={`${storyFont} space-y-4 text-xl leading-relaxed text-neutral-900 sm:text-2xl`}
-          >
-            <p>{dict.home.nameStory1}</p>
-            <p>{dict.home.nameStory2}</p>
-            <p>{dict.home.nameStory3}</p>
-            <p>{dict.home.nameStory4}</p>
-          </div>
+      <div className="group rounded-2xl bg-transparent p-5 shadow-lg transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-2xl sm:p-6">
+        <div className="space-y-4 text-lg leading-relaxed text-neutral-700">
+          <p>{dict.home.nameStory1}</p>
+          <p>{dict.home.nameStory2}</p>
+          <p>{dict.home.nameStory3}</p>
+          <p>{dict.home.nameStory4}</p>
         </div>
       </div>
 
