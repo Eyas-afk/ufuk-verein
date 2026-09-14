@@ -26,10 +26,26 @@ export async function generateMetadata({ params }) {
   if (!hasLocale(lang)) notFound();
   const dict = await getDictionary(lang);
   return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
     title: dict.meta.title,
     description: dict.meta.description,
     verification: {
       google: "7L9ELtPr60mmm3EwZnqlr1wbHhCtACCwYTSad_QPmfc",
+    },
+    openGraph: {
+      title: dict.meta.title,
+      description: dict.meta.description,
+      url: `/${lang}`,
+      siteName: "Ufuk e.V.",
+      images: [{ url: "/og-image.jpg", width: 704, height: 1524 }],
+      locale: lang === "ar" ? "ar_AR" : "de_DE",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dict.meta.title,
+      description: dict.meta.description,
+      images: ["/og-image.jpg"],
     },
   };
 }
