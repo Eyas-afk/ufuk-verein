@@ -37,7 +37,7 @@ export async function generateMetadata({ params }) {
       description: dict.meta.description,
       url: `/${lang}`,
       siteName: "Ufuk e.V.",
-      images: [{ url: "/og-image.jpg", width: 704, height: 1524 }],
+      images: [{ url: "/og-image.jpg", width: 943, height: 1136 }],
       locale: lang === "ar" ? "ar_AR" : "de_DE",
       type: "website",
     },
