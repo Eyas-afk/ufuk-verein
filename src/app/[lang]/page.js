@@ -1,14 +1,34 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Amiri, Playfair_Display } from "next/font/google";
 import { getDictionary } from "./dictionaries";
 import LogoIntro from "./LogoIntro";
 import EventsCarousel from "./EventsCarousel";
 
 const locationImages = ["/loc-moelln.webp", "/loc-ratzeburg.webp", "/loc-schwarzenbeck.jpg"];
 
+const amiri = Amiri({ subsets: ["arabic"], weight: ["400", "700"] });
+const playfair = Playfair_Display({ subsets: ["latin"], weight: ["400", "600"] });
+
+function highlightUfuk(text, lang) {
+  const pattern = lang === "ar" ? /(أُ?فُ?ق)/g : /(Ufuk)/g;
+  return text
+    .split(pattern)
+    .map((part, i) =>
+      i % 2 === 1 ? (
+        <span key={i} className="text-orange-600">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+}
+
 export default async function HomePage({ params }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
+  const storyFont = lang === "ar" ? amiri.className : playfair.className;
 
   const storySections = [
     {
@@ -38,11 +58,11 @@ export default async function HomePage({ params }) {
       <LogoIntro />
       <h1 className="sr-only">Ufuk e.V.</h1>
       <div className="group rounded-2xl bg-transparent p-5 shadow-lg transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-2xl sm:p-6">
-        <div className="space-y-4 text-lg leading-relaxed text-neutral-700">
-          <p>{dict.home.nameStory1}</p>
-          <p>{dict.home.nameStory2}</p>
-          <p>{dict.home.nameStory3}</p>
-          <p>{dict.home.nameStory4}</p>
+        <div className={`${storyFont} space-y-4 text-xl leading-relaxed text-neutral-800 sm:text-2xl`}>
+          <p>{highlightUfuk(dict.home.nameStory1, lang)}</p>
+          <p>{highlightUfuk(dict.home.nameStory2, lang)}</p>
+          <p>{highlightUfuk(dict.home.nameStory3, lang)}</p>
+          <p>{highlightUfuk(dict.home.nameStory4, lang)}</p>
         </div>
       </div>
 
